@@ -1,7 +1,15 @@
 package myVelib;
 
-public abstract class Bicycle {
-	private String name;
+public class Bicycle {
+
 	private int ID;
+	public Bicycle(int ID) {
+		super();
+		this.ID = ID;
+	}
+	public int getID() {
+		return ID;
+	}
+	
 	
 }
