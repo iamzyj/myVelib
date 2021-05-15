@@ -1,6 +1,7 @@
 package myVelib;
 
 public class System {
-	double price;
-	int id;
+	public static void main(String[] args) {
+		
+	}
 }
