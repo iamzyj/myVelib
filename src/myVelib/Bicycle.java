@@ -1,7 +1,7 @@
 package myVelib;
 
 public abstract class Bicycle {
-	String name;
-	int ID;
+	private String name;
+	private int ID;
 	
 }
