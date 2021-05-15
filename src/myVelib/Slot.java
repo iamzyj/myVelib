@@ -1,7 +1,7 @@
 package myVelib;
 
 public class Slot {
-	int ID;
-	boolean free;
-	int BicycleID;
+	public int ID;
+	public boolean free;
+	public Bicycle bicycle;
 }
