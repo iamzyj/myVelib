@@ -5,6 +5,9 @@ public class User {
 	private Coordinates position;
 	private int credits;
 	private RegistrationCard card;
+	public User(int ID) {
+		this.ID=ID;
+	}
 	public int getID() {
 		return ID;
 	}
