@@ -1,7 +1,9 @@
 package myVelib;
 
+import java.util.ArrayList;
+
 public abstract class Station {
 	Coordinates Co;
-	int slot;
-	
+	ArrayList<Slot> slot;
+	int ID;
 }
