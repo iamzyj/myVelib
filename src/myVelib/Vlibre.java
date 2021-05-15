@@ -1,8 +1,7 @@
 package myVelib;
 
 public class Vlibre extends RegistrationCard{
-	public Vlibre(String name) {
+	public Vlibre() {
 		super();
-		this.name=name;
 	}
 }

@@ -1,8 +1,7 @@
 package myVelib;
 
 public class Vmax extends RegistrationCard{
-	public Vmax(String name) {
+	public Vmax() {
 		super();
-		this.name=name;
 	}
 }
