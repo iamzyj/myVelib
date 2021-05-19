@@ -8,13 +8,13 @@ public class Session {
 	private Station startStation;
 	private Station endStation;
 	private long duration;
-	private Date starttime;
-	private Date endtime;
+	private Time starttime;
+	private Time endtime;
 	private Bicycle bicycle;
 	public Session(Station startStation,Station endStation,Bicycle bicycle) {
 		this.startStation=startStation;
 		this.endStation=endStation;
-		this.setStarttime(new Date());
+		this.setStarttime(new Time());
 		this.bicycle=bicycle;
 	}
 	
@@ -59,17 +59,21 @@ public class Session {
 	public void setBicycle(Bicycle bicycle) {
 		this.bicycle = bicycle;
 	}
-	public Date getStarttime() {
+	public Time getStarttime() {
 		return starttime;
 	}
-	public void setStarttime(Date starttime) {
-		this.starttime = starttime;
+	public void setStarttime(Time time) {
+		this.starttime = time;
 	}
-	public Date getEndtime() {
+	public Time getEndtime() {
 		return endtime;
 	}
-	public void setEndtime(Date endtime) {
+	public void setEndtime(String str) throws ParseException {
+		Time endtime=new Time(str);
 		this.endtime = endtime;
+		long s=this.starttime.getTime();
+		long e=this.endtime.getTime();
+		this.duration=(int)(e-s)/1000/60;
 	}
 	
 }
