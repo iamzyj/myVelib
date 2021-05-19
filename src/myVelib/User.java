@@ -1,7 +1,6 @@
 package myVelib;
 
 import java.util.*;
-import java.math.*;
 
 public class User {
 	private int ID;
@@ -11,6 +10,7 @@ public class User {
 	private ArrayList<Session> sessions;
 	public User(int ID) {
 		this.ID=ID;
+		this.position=new Coordinates();
 	}
 	public int getID() {
 		return ID;
