@@ -1,10 +1,13 @@
 package myVelib;
 
+import java.util.*;
+
 public class User {
 	private int ID;
 	private Coordinates position;
 	private int credits;
 	private RegistrationCard card;
+	private ArrayList<Session> sessions;
 	public User(int ID) {
 		this.ID=ID;
 	}
