@@ -5,8 +5,8 @@ import java.util.*;
 public class User {
 	private int ID;
 	private Coordinates position;
-	private int credits=0;
-	private RegistrationCard card;
+	private double credits=0.0;
+	private RegistrationCard card=null;
 	private ArrayList<Session> sessions;
 	public User(int ID) {
 		this.ID=ID;
@@ -24,10 +24,10 @@ public class User {
 	public void setPosition(Coordinates position) {
 		this.position = position;
 	}
-	public int getCredits() {
+	public double getCredits() {
 		return credits;
 	}
-	public void setCredits(int credits) {
+	public void setCredits(double credits) {
 		this.credits = credits;
 	}
 	public RegistrationCard getCard() {
@@ -36,5 +36,9 @@ public class User {
 	public void setCard(RegistrationCard card) {
 		this.card = card;
 	}
-
+	public void addSession(Session e) {
+		e.calculatePrice(this.card, this.credits);
+		this.sessions.add(e);
+	}
+	
 }

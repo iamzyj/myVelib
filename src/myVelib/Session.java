@@ -11,6 +11,7 @@ public class Session {
 	private Time starttime;
 	private Time endtime;
 	private Bicycle bicycle;
+	private double price;
 	public Session(Station startStation,Station endStation,Bicycle bicycle) {
 		this.startStation=startStation;
 		this.endStation=endStation;
@@ -68,6 +69,38 @@ public class Session {
 		long s=this.starttime.time.getTime();
 		long e=this.endtime.time.getTime();
 		this.duration=(int)((e-s)/1000/60);
+	}
+	public void calculatePrice(RegistrationCard r,double credit) {
+		if (r==null) {
+			if(this.bicycle instanceof Electrical) {
+				double temp=Math.ceil((this.duration-credit)/60);
+				this.setPrice(2*temp);
+			}
+			if(this.bicycle instanceof Mechanical) {
+				double temp=Math.ceil((this.duration-credit)/60);
+				this.setPrice(1*temp);
+			}
+		}
+		if(r instanceof Vlibre) {
+			if(this.bicycle instanceof Electrical) {
+				double temp=Math.ceil((this.duration-credit)/60-1);
+				this.setPrice(temp>0.0?2*temp+1:1.0);
+			}
+			if(this.bicycle instanceof Mechanical) {
+				double temp=Math.ceil((this.duration-credit)/60-1);
+				this.setPrice(temp>0.0?1*temp:0.0);
+			}
+		}
+		if(r instanceof Vmax) {
+			double temp=Math.ceil((this.duration-credit)/60-1);
+			this.setPrice(temp>0.0?1*temp:0.0);
+		}
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	
 }
