@@ -17,23 +17,17 @@ public class Session {
 		this.setStarttime(new Time());
 		this.bicycle=bicycle;
 	}
+	public Session() {
+		this.setStarttime(new Time());
+	}
 	
 	public static void main(String[] args) throws ParseException {
-        
-        SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间 
-        sdf.applyPattern("yyyy-MM-dd HH:mm:ss a");// a为am/pm的标记  
-        Date date = new Date();// 获取当前时间 
-        
-        System.out.println("现在时间：" + sdf.format(date)); // 输出已经格式化的现在时间（24小时制）
-        SimpleDateFormat sdf1 =new SimpleDateFormat("yyyy年MM月dd日");                
-        //字符串变为时间Date类,解析p格式化f,pf        
-        String birthday = "1995年05月02日";        
-        Date d = sdf1.parse(birthday);                
-        //获得时间毫秒值        
-        long myTime = d.getTime();        
-        //当前日期毫秒值        
-        long currentTime = new Date().getTime();        
-        System.out.println((currentTime-myTime)/1000/60);    
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Session s1=new Session();
+		s1.setEndtime("2021-05-20 12:34:56");
+		System.out.println(s1.duration);
+		System.out.println(sdf.format(s1.endtime.time));
+		
     } 
 	public Station getStartStation() {
 		return startStation;
@@ -71,9 +65,9 @@ public class Session {
 	public void setEndtime(String str) throws ParseException {
 		Time endtime=new Time(str);
 		this.endtime = endtime;
-		long s=this.starttime.getTime();
-		long e=this.endtime.getTime();
-		this.duration=(int)(e-s)/1000/60;
+		long s=this.starttime.time.getTime();
+		long e=this.endtime.time.getTime();
+		this.duration=(int)((e-s)/1000/60);
 	}
 	
 }

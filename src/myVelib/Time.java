@@ -4,7 +4,7 @@ import java.util.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class Time extends Date {
+public class Time{
 	public Date time;
 	public String format="yyyy-MM-dd HH:mm:ss";
 	public Time() {
