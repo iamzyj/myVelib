@@ -21,8 +21,15 @@ public class Station {
 	
 	public static ArrayList<Slot> GenerateSlot(int n) {
 		ArrayList<Slot>  slot = new ArrayList<Slot>(n);
-		
+		for (int i=1;i<=n;i++) {
+			Slot s=new Slot();
+			s.ID=i;
+			s.free=true;
+			slot.add(s);
+		}
+		return slot;
 	}
+
 	
 }
 
