@@ -7,6 +7,7 @@ public class Station {
 	ArrayList<Slot> slot;
 	int ID;
 	boolean Online;
+	boolean isPlus;
 	
 	
 	
@@ -17,6 +18,7 @@ public class Station {
 		this.slot = slot;
 		ID = iD;
 		Online = online;
+		isPlus=false;
 	}
 	
 	public static ArrayList<Slot> GenerateSlot(int n) {
