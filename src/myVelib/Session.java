@@ -1,18 +1,40 @@
 package myVelib;
 
 import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Session {
 	private Station startStation;
 	private Station endStation;
 	private long duration;
+	private Date starttime;
+	private Date endtime;
 	private Bicycle bicycle;
-	public Session(Station startStation,Station endStation,long duraiton,Bicycle bicycle) {
+	public Session(Station startStation,Station endStation,Bicycle bicycle) {
 		this.startStation=startStation;
 		this.endStation=endStation;
-		this.duration=duration;
+		this.setStarttime(new Date());
 		this.bicycle=bicycle;
 	}
+	
+	public static void main(String[] args) throws ParseException {
+        
+        SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间 
+        sdf.applyPattern("yyyy-MM-dd HH:mm:ss a");// a为am/pm的标记  
+        Date date = new Date();// 获取当前时间 
+        
+        System.out.println("现在时间：" + sdf.format(date)); // 输出已经格式化的现在时间（24小时制）
+        SimpleDateFormat sdf1 =new SimpleDateFormat("yyyy年MM月dd日");                
+        //字符串变为时间Date类,解析p格式化f,pf        
+        String birthday = "1995年05月02日";        
+        Date d = sdf1.parse(birthday);                
+        //获得时间毫秒值        
+        long myTime = d.getTime();        
+        //当前日期毫秒值        
+        long currentTime = new Date().getTime();        
+        System.out.println((currentTime-myTime)/1000/60);    
+    } 
 	public Station getStartStation() {
 		return startStation;
 	}
@@ -36,6 +58,18 @@ public class Session {
 	}
 	public void setBicycle(Bicycle bicycle) {
 		this.bicycle = bicycle;
+	}
+	public Date getStarttime() {
+		return starttime;
+	}
+	public void setStarttime(Date starttime) {
+		this.starttime = starttime;
+	}
+	public Date getEndtime() {
+		return endtime;
+	}
+	public void setEndtime(Date endtime) {
+		this.endtime = endtime;
 	}
 	
 }
