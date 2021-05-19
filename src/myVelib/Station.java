@@ -34,7 +34,7 @@ public class Station {
 		return slot;
 	}
 
-	public static int countFree(ArrayList<Slot>  slot) {
+	public int countFree(ArrayList<Slot>  slot) {
 		int cnt=0;
 		for(Slot s : slot) {
 			if (s.free==true){
@@ -53,21 +53,23 @@ public class Station {
 				if (s.free==true) {
 					s.free=false;
 					s.bicycle=b;
+					break;
 			}
 		}
 	
 	}
 	}
-	public void removeBicycle(Bicycle b) {
+	public void removeBicycle(String name) {
 		int cnt=this.slot_num-countFree(this.slot);
 		if (cnt==0) {
 			System.out.println("No more free bicycle");
 		}
 		else {
 			for (Slot s : this.slot) {
-				if (s.free==false && s.bicycle==b) {
+				if (s.free==false && s.bicycle.name==name) {
 					s.free=true;
 					s.bicycle=null;
+					break;
 			}
 		}
 	

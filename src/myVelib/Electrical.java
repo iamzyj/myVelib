@@ -2,8 +2,8 @@ package myVelib;
 
 public class Electrical extends Bicycle{
 
-	public Electrical(int ID) {
-		super(ID);
+	public Electrical(int ID, String name) {
+		super(ID,name);
 		// TODO Auto-generated constructor stub
 	}
 	
