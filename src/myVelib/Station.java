@@ -66,11 +66,21 @@ public class Station {
 		}
 		else {
 			for (Slot s : this.slot) {
-				if (s.free==false && s.bicycle.name==name) {
+				if (name=="E") {
+				if (s.free==false && s.bicycle instanceof Electrical) {
 					s.free=true;
 					s.bicycle=null;
 					break;
+				}
 			}
+				
+				if (name=="M") {
+					if (s.free==false && s.bicycle instanceof Mechanical) {
+						s.free=true;
+						s.bicycle=null;
+						break;
+					}
+				}
 		}
 	
 	}

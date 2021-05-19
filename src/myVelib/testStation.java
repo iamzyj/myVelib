@@ -8,8 +8,8 @@ public class testStation {
 		ArrayList<Slot> slot = Station.GenerateSlot(n);
 		Coordinates co= new Coordinates(2,2);
 		Station s = new Station(co,slot,1,true,n);
-		Electrical b= new Electrical(0,"E");
-		Mechanical b1=new Mechanical(0,"M");
+		Electrical b= new Electrical(0);
+		Mechanical b1=new Mechanical(0);
 		int fr=s.countFree(s.slot);
 		System.out.println(fr);
 		s.addBicycle(b1);
