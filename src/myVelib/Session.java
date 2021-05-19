@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 public class Session {
 	private Station startStation;
 	private Station endStation;
-	private long duration;
+	private int duration;
 	private Time starttime;
 	private Time endtime;
 	private Bicycle bicycle;
@@ -50,7 +50,7 @@ public class Session {
 	public long getDuration() {
 		return duration;
 	}
-	public void setDuration(long duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 	public Bicycle getBicycle() {
