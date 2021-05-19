@@ -1,11 +1,12 @@
 package myVelib;
 
 import java.util.*;
+import java.math.*;
 
 public class User {
 	private int ID;
 	private Coordinates position;
-	private int credits;
+	private int credits=0;
 	private RegistrationCard card;
 	private ArrayList<Session> sessions;
 	public User(int ID) {
