@@ -20,8 +20,8 @@ public class Coordinates {
 	}
 	
 	public Coordinates() {
-		this.x=10*Math.random();
-		this.y=10*Math.random();
+		this.x=4*Math.random();
+		this.y=4*Math.random();
 	}
 	
 

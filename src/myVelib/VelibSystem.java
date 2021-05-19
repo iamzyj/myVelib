@@ -3,20 +3,22 @@ package myVelib;
 import java.util.ArrayList;
 
 public class VelibSystem {
-	 ArrayList<Bicycle> bicycle = new ArrayList<Bicycle>();
+	ArrayList<Bicycle> bicycles = new ArrayList<Bicycle>();
+	ArrayList<Station> stations =new ArrayList<Station>();
+	ArrayList<User> users=new ArrayList<User>();
 	public static void main(String args[]) {
 		VelibSystem s= new VelibSystem();
 		
 		for(int i=0;i<10;i++) {
 			int id;
-			if (s.bicycle==null) {
+			if (s.bicycles==null) {
 				id=0;
 			}
 			else
-				{id = s.bicycle.size();}
-			s.bicycle.add(new Electrical(id));
+				{id = s.bicycles.size();}
+			s.bicycles.add(new Electrical(id));
 		}
-		for (Bicycle b:s.bicycle) {
+		for (Bicycle b:s.bicycles) {
 		System.out.println(b.getID());
 		}
 	}
