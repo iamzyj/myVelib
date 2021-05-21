@@ -12,6 +12,7 @@ public class User {
 	public User(int ID) {
 		this.ID=ID;
 		this.position=new Coordinates();
+		this.sessions=new ArrayList<Session>();
 	}
 	public int getID() {
 		return ID;

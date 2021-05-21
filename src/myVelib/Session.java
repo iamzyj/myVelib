@@ -70,6 +70,7 @@ public class Session {
 		this.duration=(int)((e-s)/1000/60);
 	}
 	public void calculatePrice(RegistrationCard r,double credit) {
+//		System.out.println(this.duration);
 		if (r==null) {
 			if(this.bicycle instanceof Electrical) {
 				double temp=Math.ceil((this.duration-credit)/60);

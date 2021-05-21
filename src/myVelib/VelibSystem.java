@@ -16,21 +16,12 @@ public class VelibSystem {
 		this.users=new HashMap<Integer,User>();
 		this.name=name;
 	}
-	public static void main(String args[]) {
-//		VelibSystem s= new VelibSystem("001");
-//		
-//		for(int i=0;i<10;i++) {
-//			int id;
-//			if (s.bicycles==null) {
-//				id=0;
-//			}
-//			else
-//				{id = s.bicycles.size();}
-//			s.bicycles.add(new Electrical(id));
-//		}
-//		for (Bicycle b:s.bicycles) {
-//		System.out.println(b.getID());
-//		}
+	public static void main(String args[]) throws ParseException {
+		VelibSystem v=VelibSystem.setup("s", 10, 10, 70);
+		v.addUser("ls", null);
+		v.rentbike(1, 1);
+		double p=v.returnbike(1, 7, "2021-05-22 19:00:00");
+		System.out.println(p);
 	}
 	public void generateStations(int nStations,int nSlots) {
 		HashSet<Coordinates> c=new HashSet<Coordinates>();
@@ -39,9 +30,10 @@ public class VelibSystem {
 		}
 		int id=0;
 		for(Coordinates cs:c) {
-			stations.put(id,new Station(cs,nSlots,id,true));
+			Station s=new Station(cs,nSlots,id,true);
+			stations.put(id,s);
+			id+=1;
 		}
-
 	}
 	public void distributeBikes(int nBikes) {
 		int nMech=(int)(nBikes*0.7);
@@ -51,7 +43,9 @@ public class VelibSystem {
 			for(Integer key:stations.keySet()) {
 				Station s=stations.get(key);
 				if (nMech>0) {
-				s.addBicycle(new Mechanical(id));
+				Mechanical m=new Mechanical(id);
+				s.addBicycle(m);
+				bicycles.put(id,m);
 				id+=1;
 				nMech-=1;
 				}
@@ -61,7 +55,9 @@ public class VelibSystem {
 			for(Integer key:stations.keySet()) {
 				Station s=stations.get(key);
 				if (nElec>0) {
-				s.addBicycle(new Electrical(id));
+				Electrical e=new Electrical(id);
+				s.addBicycle(e);
+				bicycles.put(id,e);
 				id+=1;
 				nElec-=1;
 				}
@@ -97,8 +93,7 @@ public class VelibSystem {
 		User u=users.get(userID);
 		Station s=stations.get(stationID);
 		int bicycleID=s.removeBicycle();
-		Bicycle b=bicycles.get(bicycleID);
-		Session sess=new Session(s,b);
+		Session sess=new Session(s,bicycles.get(bicycleID));
 		u.addSession(sess);
 	}
 	public double returnbike(int userID,int stationID,String str) throws ParseException {
