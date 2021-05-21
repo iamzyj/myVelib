@@ -13,23 +13,23 @@ public class Station {
 	
 	
 	
-	public Station(Coordinates co, ArrayList<Slot> slots, int iD, boolean online) {
+	public Station(Coordinates co, int slots_n, int iD, boolean online) {
 		super();
 		Co = co;
-		this.slots = slots;
+		this.slots = Station.GenerateSlot(slots_n);
 		ID = iD;
 		Online = online;
 		isPlus=false;
-		slot_num=slots.size();
+		slot_num=slots_n;
 	}
-	public Station(Coordinates co, ArrayList<Slot> slots, int iD, boolean online,boolean isplus) {
+	public Station(Coordinates co, int slots_n, int iD, boolean online,boolean isplus) {
 		super();
 		Co = co;
-		this.slots = slots;
+		this.slots = Station.GenerateSlot(slots_n);
 		ID = iD;
 		Online = online;
 		isPlus=isplus;
-		slot_num=slots.size();
+		slot_num=slots_n;
 	}
 	
 	public static ArrayList<Slot> GenerateSlot(int n) {
@@ -68,14 +68,14 @@ public class Station {
 	
 	}
 	}
-	public void removeBicycle(String name) {
+	public void removeBicycle(String type) {
 		int cnt=this.slot_num-countFree(this.slots);
 		if (cnt==0) {
 			System.out.println("No more free bicycle");
 		}
 		else {
 			for (Slot s : this.slots) {
-				if (name=="E") {
+				if (type=="E") {
 				if (s.free==false && s.bicycle instanceof Electrical) {
 					s.free=true;
 					s.bicycle=null;
@@ -83,7 +83,7 @@ public class Station {
 				}
 			}
 				
-				if (name=="M") {
+				if (type=="M") {
 					if (s.free==false && s.bicycle instanceof Mechanical) {
 						s.free=true;
 						s.bicycle=null;
