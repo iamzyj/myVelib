@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Station {
 	Coordinates Co;
-	ArrayList<Slot> slot;
+	ArrayList<Slot> slots;
 	int ID;
 	boolean Online;
 	boolean isPlus;
@@ -13,10 +13,10 @@ public class Station {
 	
 	
 	
-	public Station(Coordinates co, ArrayList<Slot> slot, int iD, boolean online, int s) {
+	public Station(Coordinates co, ArrayList<Slot> slots, int iD, boolean online, int s) {
 		super();
 		Co = co;
-		this.slot = slot;
+		this.slots = slots;
 		ID = iD;
 		Online = online;
 		isPlus=false;
@@ -24,19 +24,19 @@ public class Station {
 	}
 	
 	public static ArrayList<Slot> GenerateSlot(int n) {
-		ArrayList<Slot>  slot = new ArrayList<Slot>(n);
+		ArrayList<Slot>  slots = new ArrayList<Slot>();
 		for (int i=1;i<=n;i++) {
 			Slot s=new Slot();
 			s.ID=i;
 			s.free=true;
-			slot.add(s);
+			slots.add(s);
 		}
-		return slot;
+		return slots;
 	}
 
-	public int countFree(ArrayList<Slot>  slot) {
+	public int countFree(ArrayList<Slot>  slots) {
 		int cnt=0;
-		for(Slot s : slot) {
+		for(Slot s : slots) {
 			if (s.free==true){
 				cnt++;
 			}
@@ -44,12 +44,12 @@ public class Station {
 		return cnt;
 }
 	public void addBicycle(Bicycle b) {
-		int cnt=countFree(this.slot);
+		int cnt=countFree(this.slots);
 		if (cnt==0) {
 			System.out.println("No more free slot");
 		}
 		else {
-			for (Slot s : this.slot) {
+			for (Slot s : this.slots) {
 				if (s.free==true) {
 					s.free=false;
 					s.bicycle=b;
@@ -60,12 +60,12 @@ public class Station {
 	}
 	}
 	public void removeBicycle(String name) {
-		int cnt=this.slot_num-countFree(this.slot);
+		int cnt=this.slot_num-countFree(this.slots);
 		if (cnt==0) {
 			System.out.println("No more free bicycle");
 		}
 		else {
-			for (Slot s : this.slot) {
+			for (Slot s : this.slots) {
 				if (name=="E") {
 				if (s.free==false && s.bicycle instanceof Electrical) {
 					s.free=true;

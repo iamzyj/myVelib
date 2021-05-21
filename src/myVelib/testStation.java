@@ -10,17 +10,17 @@ public class testStation {
 		Station s = new Station(co,slot,1,true,n);
 		Electrical b= new Electrical(0);
 		Mechanical b1=new Mechanical(0);
-		int fr=s.countFree(s.slot);
+		int fr=s.countFree(s.slots);
 		System.out.println(fr);
 		s.addBicycle(b1);
-		fr=s.countFree(s.slot);
+		fr=s.countFree(s.slots);
 		System.out.println(fr);
 		s.addBicycle(b);
-		fr=s.countFree(s.slot);
+		fr=s.countFree(s.slots);
 		System.out.println(fr);
 		
 		s.removeBicycle("M");
-		System.out.println(s.slot.get(0).free);
+		System.out.println(s.slots.get(0).free);
 		
 	}
 }
