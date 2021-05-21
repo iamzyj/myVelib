@@ -13,14 +13,23 @@ public class Station {
 	
 	
 	
-	public Station(Coordinates co, ArrayList<Slot> slots, int iD, boolean online, int s) {
+	public Station(Coordinates co, ArrayList<Slot> slots, int iD, boolean online) {
 		super();
 		Co = co;
 		this.slots = slots;
 		ID = iD;
 		Online = online;
 		isPlus=false;
-		slot_num=s;
+		slot_num=slots.size();
+	}
+	public Station(Coordinates co, ArrayList<Slot> slots, int iD, boolean online,boolean isplus) {
+		super();
+		Co = co;
+		this.slots = slots;
+		ID = iD;
+		Online = online;
+		isPlus=isplus;
+		slot_num=slots.size();
 	}
 	
 	public static ArrayList<Slot> GenerateSlot(int n) {
@@ -80,6 +89,23 @@ public class Station {
 						s.bicycle=null;
 						break;
 					}
+				}
+		}
+	
+	}
+	}
+	public void removeBicycle() {
+		int cnt=this.slot_num-countFree(this.slots);
+		if (cnt==0) {
+			System.out.println("No more free bicycle");
+		}
+		else {
+			for (Slot s : this.slots) {
+				
+				if (s.free==false) {
+					s.free=true;
+					s.bicycle=null;
+					break;
 				}
 		}
 	
