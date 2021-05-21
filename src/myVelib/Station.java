@@ -94,22 +94,33 @@ public class Station {
 	
 	}
 	}
-	public void removeBicycle() {
+	public void clear() {
+		for (Slot s : this.slots) {
+			
+			if (s.free==true) {
+				s.bicycle=null;
+			}
+	}
+		
+	}
+	public int removeBicycle() {
 		int cnt=this.slot_num-countFree(this.slots);
 		if (cnt==0) {
 			System.out.println("No more free bicycle");
+			return 0;
 		}
 		else {
 			for (Slot s : this.slots) {
 				
 				if (s.free==false) {
 					s.free=true;
-					s.bicycle=null;
-					break;
+					int id=s.bicycle.getID();
+					return id;
 				}
 		}
 	
 	}
+	return 0;
 	}
 
 }

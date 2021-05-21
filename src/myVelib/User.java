@@ -3,6 +3,7 @@ package myVelib;
 import java.util.*;
 
 public class User {
+	private String username;
 	private int ID;
 	private Coordinates position;
 	private double credits=0.0;
@@ -37,8 +38,21 @@ public class User {
 		this.card = card;
 	}
 	public void addSession(Session e) {
-		e.calculatePrice(this.card, this.credits);
+//		e.calculatePrice(this.card, this.credits);
 		this.sessions.add(e);
+	}
+	public Session getCurrentSession() {
+		int len=this.sessions.size();
+		if(len>0) {
+			return this.sessions.get(len-1);
+		}
+		return null;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

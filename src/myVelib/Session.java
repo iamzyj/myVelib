@@ -12,9 +12,8 @@ public class Session {
 	private Time endtime;
 	private Bicycle bicycle;
 	private double price;
-	public Session(Station startStation,Station endStation,Bicycle bicycle) {
+	public Session(Station startStation,Bicycle bicycle) {
 		this.startStation=startStation;
-		this.endStation=endStation;
 		this.setStarttime(new Time());
 		this.bicycle=bicycle;
 	}
