@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 //when calling Time. use time1.time to call the Date Attribute
 public class Time{
 	public Date time;
-	public String format="yyyy-MM-dd HH:mm:ss";
+	public String format="yyyy-MM-dd/HH:mm:ss";
 	public Time() {
 		super();
 		this.time=new Date();

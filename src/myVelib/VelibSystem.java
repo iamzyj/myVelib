@@ -20,7 +20,7 @@ public class VelibSystem {
 		VelibSystem v=VelibSystem.setup("s", 10, 10, 70);
 		v.addUser("ls", null);
 		v.rentbike(1, 1);
-		double p=v.returnbike(1, 7, "2021-05-22 19:00:00");
+		double p=v.returnbike(1, 7, "2021-05-22/19:00:00");
 		System.out.println(p);
 	}
 	public void generateStations(int nStations,int nSlots) {
@@ -72,7 +72,6 @@ public class VelibSystem {
 		return s;
 	}
 //	之后并没有加network name,因为都是实例方法，直接调用,名字貌似没用？
-//	RegistrationCard似乎有点问题
 	public void addUser(String username,RegistrationCard card) {
 		int id=users.size()+1;
 		User u=new User(id);
@@ -88,7 +87,6 @@ public class VelibSystem {
 		Station s=stations.get(stationID);
 		s.Online=false;
 	}
-//	rent bike 必须与 return bike 配套
 	public void rentbike(int userID,int stationID) {
 		User u=users.get(userID);
 		Station s=stations.get(stationID);
