@@ -40,13 +40,30 @@ public class VelibSystem {
 	public void distributeBikes(int nBikes) {
 		int nMech=(int)(nBikes*0.7);
 		int nElec=nBikes-nMech;
+		int id=0;
+		while(nMech>0) {
+			for(Station s:stations) {
+				if (nMech>0) {
+				s.addBicycle(new Mechanical(id));
+				id+=1;
+				nMech-=1;
+				}
+			}
+		}
+		while(nElec>0) {
+			for(Station s:stations) {
+				if (nElec>0) {
+				s.addBicycle(new Electrical(id));
+				id+=1;
+				nElec-=1;
+				}
+			}
+			}
 		
 	}
 	public void setup(String name,int nStations, int nSlots, int nBikes) {
 		VelibSystem s= new VelibSystem(name);
 		s.generateStations(nStations, nSlots); 
-		int nMech=(int)(nBikes*0.7);
-		int nElec=nBikes-nMech;
-		
+		s.distributeBikes(nBikes);
 	}
 }
