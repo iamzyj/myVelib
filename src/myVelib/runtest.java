@@ -2,6 +2,8 @@ package myVelib;
 
 import java.util.*;
 import java.io.*;
+//如果有时间，稍微自动化一点的CLUI
+//加一个输入的设置，创建文件testdynamic，并自动载入ini文件，接下来输入命令，写到testdynamic文件中，输入runtest就是执行这个文件
 //System其实还有面积的设置，应该在coordinates 那里修改
 //addUser应该来一个coordinates
 public class runtest {
