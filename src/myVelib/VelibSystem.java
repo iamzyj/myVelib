@@ -10,6 +10,11 @@ public class VelibSystem {
 //	ArrayList<Station> stations =new ArrayList<Station>();
 //	ArrayList<User> users=new ArrayList<User>();
 	String name;
+	public VelibSystem() {
+		this.bicycles=new HashMap<Integer,Bicycle>();
+		this.stations=new HashMap<Integer,Station>();
+		this.users=new HashMap<Integer,User>();
+	}
 	public VelibSystem(String name) {
 		this.bicycles=new HashMap<Integer,Bicycle>();
 		this.stations=new HashMap<Integer,Station>();
@@ -17,7 +22,8 @@ public class VelibSystem {
 		this.name=name;
 	}
 	public static void main(String args[]) throws ParseException {
-		VelibSystem v=VelibSystem.setup("s", 10, 10, 70);
+		VelibSystem v=new VelibSystem();
+		v.setup(10, 10, 70);
 		v.addUser("ls", null);
 		v.rentbike(1, 1);
 		double p=v.returnbike(1, 7, "2021-05-22/19:00:00");
@@ -65,11 +71,11 @@ public class VelibSystem {
 			}
 		
 	}
-	public static VelibSystem setup(String name,int nStations, int nSlots, int nBikes) {
-		VelibSystem s= new VelibSystem(name);
-		s.generateStations(nStations, nSlots); 
-		s.distributeBikes(nBikes);
-		return s;
+	public String setup(int nStations, int nSlots, int nBikes) {
+		String returnvalue="";
+		this.generateStations(nStations, nSlots); 
+		this.distributeBikes(nBikes);
+		return returnvalue;
 	}
 //	之后并没有加network name,因为都是实例方法，直接调用,名字貌似没用？
 // cardtype用字符串会更好些，不然没法解析CLUI参数

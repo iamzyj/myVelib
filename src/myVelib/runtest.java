@@ -4,6 +4,17 @@ import java.util.*;
 import java.io.*;
 
 public class runtest {
+	public static String parserCommand(String[] command) {
+		String returnvalue="";
+		if(command[0].equals("setup")) {
+			if (command.length<2) {
+			}
+			else {
+			}
+		}
+		
+		return returnvalue;
+	}
 	public static String readTextFile(String fileName) {
 		  
 		  String returnValue = "";
@@ -38,7 +49,7 @@ public class runtest {
 		  }
 		  return returnValue;
 		}
-	public static void main(final String...arguments){
+	public static void main(final String...arguments) throws IOException{
 		  if (arguments.length < 2)
 		   {
 		      System.out.println("filename is not provided");
@@ -47,14 +58,32 @@ public class runtest {
 		   {  String filename=arguments[1];
 		      String test=runtest.readTextFile(filename);
 		      String [] commands=test.split("[\n]");
-		      for (String command:commands) {
-		    	  System.out.println(command);
-		      }
 		   	  String output="output.txt";
 			  String [] origin=filename.split("[.]");
 			  String newfilename=origin[0]+output;
-		      System.out.println("The command is "+arguments[0]+"The provided file is " + arguments[1]+newfilename);
-		   }
-		
+			  FileWriter fw = null;
+			File file=null;
+			try{ 
+				file=new File(newfilename);
+				file.createNewFile();
+				fw = new FileWriter(file);
+				 for (String command:commands) {
+			    	  fw.write(command+"\n");
+			      }
+			}
+			//	workspace need to be flushed to show the existence of the newly created file   	     
+			catch(IOException e){
+				e.printStackTrace();
+			}
+			finally{
+				try{
+					fw.close();
+				} 
+				catch(IOException e){
+					e.printStackTrace();
+				}
+			  }
+			}
+				
 	}
 }
