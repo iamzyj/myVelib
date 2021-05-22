@@ -1,1 +1,4 @@
 setup 10 10 70
+addUser ls null
+rentbike 1 1
+returnbike 1 7 2021-5-23/12:00:00

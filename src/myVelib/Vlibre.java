@@ -3,6 +3,7 @@ package myVelib;
 import java.util.*;
 
 public class Vlibre extends RegistrationCard{
+	public String name="Vlibre";
 	public Vlibre() {
 		super();
 	}

@@ -56,6 +56,11 @@ public class Session {
 	public Time getStarttime() {
 		return starttime;
 	}
+	public String printStarttime() {
+		String format=starttime.format;
+		SimpleDateFormat sdf=new SimpleDateFormat(format);
+		return sdf.format(starttime.time);
+	}
 	public void setStarttime(Time time) {
 		this.starttime = time;
 	}
