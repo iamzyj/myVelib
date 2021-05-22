@@ -7,6 +7,8 @@ public class VelibSystem {
 	HashMap<Integer,Bicycle> bicycles;
 	HashMap<Integer,Station> stations;
 	HashMap<Integer,User> users;
+	double length;
+	double width;
 //	ArrayList<Station> stations =new ArrayList<Station>();
 //	ArrayList<User> users=new ArrayList<User>();
 	String name;

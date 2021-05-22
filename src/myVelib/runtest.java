@@ -2,14 +2,18 @@ package myVelib;
 
 import java.util.*;
 import java.io.*;
-
+//System其实还有面积的设置，应该在coordinates 那里修改
+//addUser应该来一个coordinates
 public class runtest {
-	public static String parserCommand(String[] command) {
+	public static String parserCommand(String[] command,VelibSystem v) {
 		String returnvalue="";
 		if(command[0].equals("setup")) {
 			if (command.length<2) {
+//				这几个数字要从ini文件那儿读取
+				v.setup(10,10,75);
 			}
 			else {
+				v.setup(Integer.parseInt(command[1]), Integer.parseInt(command[2]), Integer.parseInt(command[3]));
 			}
 		}
 		
