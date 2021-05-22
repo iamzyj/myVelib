@@ -72,6 +72,7 @@ public class VelibSystem {
 		return s;
 	}
 //	之后并没有加network name,因为都是实例方法，直接调用,名字貌似没用？
+// cardtype用字符串会更好些，不然没法解析CLUI参数
 	public void addUser(String username,RegistrationCard card) {
 		int id=users.size()+1;
 		User u=new User(id);

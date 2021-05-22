@@ -37,18 +37,19 @@ public class runtest {
 		    }
 		  }
 		  return returnValue;
-		} 
-	public static void parser() {
-		
-	}
+		}
 	public static void main(final String...arguments){
 		  if (arguments.length < 2)
 		   {
-		      System.out.println("\nXML file path/name and XSD file path/name not provided.\n");
-		      System.out.println("\tUSAGE: TwoArgsMain <xmlFilePathAndName> <xsdFilePathAndName>");
+		      System.out.println("filename is not provided");
 		   }
 		   else
 		   {  String filename=arguments[1];
+		      String test=runtest.readTextFile(filename);
+		      String [] commands=test.split("[\n]");
+		      for (String command:commands) {
+		    	  System.out.println(command);
+		      }
 		   	  String output="output.txt";
 			  String [] origin=filename.split("[.]");
 			  String newfilename=origin[0]+output;
