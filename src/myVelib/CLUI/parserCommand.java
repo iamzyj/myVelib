@@ -2,11 +2,14 @@ package myVelib.CLUI;
 
 import java.text.ParseException;
 
+import myVelib.Exceptions.InvalidIDException;
+import myVelib.Exceptions.NoneParkingSlotException;
+import myVelib.Exceptions.VacancyException;
 import myVelib.core.VelibSystem;
 import myVelib.core.Vlibre;
 import myVelib.core.Vmax;
 public class parserCommand {
-	public static String parseCommand(String[] command,VelibSystem v) throws ParseException {
+	public static String parseCommand(String[] command,VelibSystem v) throws ParseException, NumberFormatException, InvalidIDException, VacancyException, NoneParkingSlotException {
 		String returnvalue="";
 		if(command[0].equals("setup")) {
 			VelibSystem v1=runtest.SystemList.get(command[1]);

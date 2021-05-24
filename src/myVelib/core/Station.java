@@ -45,7 +45,7 @@ public class Station implements java.io.Serializable{
 		return slots;
 	}
 
-	public int countFree(ArrayList<Slot>  slots) {
+	public int countFree() {
 		int cnt=0;
 		for(Slot s : slots) {
 			if (s.free==true){
@@ -55,7 +55,7 @@ public class Station implements java.io.Serializable{
 		return cnt;
 }
 	public void addBicycle(Bicycle b) {
-		int cnt=countFree(this.slots);
+		int cnt=countFree();
 		if (cnt==0) {
 			System.out.println("No more free slot");
 		}
@@ -99,7 +99,7 @@ public class Station implements java.io.Serializable{
 	return 0;
 	}
 	public boolean hasBikes() {
-		int cnt=this.slot_num-countFree(this.slots);
+		int cnt=this.slot_num-countFree();
 		if(cnt==0) {
 			return false;
 		}

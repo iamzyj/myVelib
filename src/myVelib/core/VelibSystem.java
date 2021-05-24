@@ -1,8 +1,11 @@
 package myVelib.core;
 
+import myVelib.Exceptions.*;
+
 import java.text.ParseException;
 import java.util.*;
 //可以指定一个或者随机一个大数，再加上原有从0开始的ID,不过这样取ID的时候要注意
+//station要加上rental records 和returning records 为了之后展示数据.
 //还车时暂未考虑plus staion,所以没有加上credits
 public class VelibSystem implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858953073456L;
@@ -25,7 +28,7 @@ public class VelibSystem implements java.io.Serializable{
 		this.setUsers(new HashMap<Integer,User>());
 		this.name=name;
 	}
-	public static void main(String args[]) throws ParseException {
+	public static void main(String args[]) throws ParseException, InvalidIDException, VacancyException, NoneParkingSlotException{
 		VelibSystem v=new VelibSystem();
 		v.setup(10, 10, 70);
 		v.addUser("ls", null);
@@ -90,27 +93,45 @@ public class VelibSystem implements java.io.Serializable{
 		getUsers().put(id,u);
 		return "user "+username+" is added..."+(card==null?"who has not a card yet":"whose cardtype is "+card.name);
 	}
-	public String offline(int stationID) {
+	public String offline(int stationID) throws InvalidIDException {
 		Station s=getStations().get(stationID);
+		if (s==null) {
+			throw new InvalidIDException();
+		}
 		s.Online=false;
 		return "Station ID: "+stationID+" is offline rightnow";
 	}
-	public String online(int stationID) {
+	public String online(int stationID) throws InvalidIDException {
 		Station s=getStations().get(stationID);
+		if (s==null) {
+			throw new InvalidIDException();
+		}
 		s.Online=false;
 		return "Station ID: "+stationID+" is online rightnow";
 	}
-	public String rentbike(int userID,int stationID) {
+	public String rentbike(int userID,int stationID) throws InvalidIDException, VacancyException {		
 		User u=getUsers().get(userID);
 		Station s=getStations().get(stationID);
+		if (s==null || u==null) {
+			throw new InvalidIDException();
+		}
+		if (s.hasBikes()==false) {
+			throw new VacancyException(s.ID);
+		}
 		int bicycleID=s.removeBicycle();
 		Session sess=new Session(s,getBicycles().get(bicycleID));
 		u.addSession(sess);
 		return "user "+u.getUsername()+" rented a bike at "+"Station ID: "+stationID+". Time is "+sess.printStarttime();
-	}
-	public String returnbike(int userID,int stationID,String str) throws ParseException {
+		}
+	public String returnbike(int userID,int stationID,String str) throws ParseException, InvalidIDException, NoneParkingSlotException {
 		User u=getUsers().get(userID);
 		Station s=getStations().get(stationID);
+		if (s==null || u==null) {
+			throw new InvalidIDException();
+		}
+		if (s.countFree()==0) {
+			throw new NoneParkingSlotException(s.ID);
+		}
 		Session sess=u.getCurrentSession();
 		sess.setEndtime(str);
 		sess.setEndStation(s);

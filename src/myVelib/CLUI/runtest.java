@@ -1,6 +1,8 @@
 package myVelib.CLUI;
 
 import java.util.*;
+
+import myVelib.Exceptions.*;
 import myVelib.core.*;
 
 import java.io.*;
@@ -16,7 +18,7 @@ public class runtest {
 		VelibSystem v=Inifile.readIniFile();
 		return v;
 	}
-	public static String parseCommand(String[] command) throws ParseException {
+	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException{
 		String returnvalue="";
 		if(command[0].equals("setup")) {
 			VelibSystem v=SystemList.get(command[1]);
@@ -26,7 +28,12 @@ public class runtest {
 					returnvalue+=v.setup(10,10,75);
 				}
 				else {
+					try {
 					returnvalue=v.setup(Integer.parseInt(command[2]), Integer.parseInt(command[3]), Integer.parseInt(command[4]));
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					System.err.println("the number entered can not be recognized, please follow the standard format");
+				}
 				}
 			}
 			else {
@@ -36,7 +43,11 @@ public class runtest {
 					returnvalue+=v.setup(10,10,75);
 				}
 				else {
+					try {
 					returnvalue=v.setup(Integer.parseInt(command[2]), Integer.parseInt(command[3]), Integer.parseInt(command[4]));
+				} catch (NumberFormatException e) {
+					System.err.println("Caught NumberFormatException: "+e.getMessage());
+				}
 				}
 				SystemList.put(command[1], v);
 			}
@@ -52,35 +63,52 @@ public class runtest {
 				Vmax card=new Vmax();
 				returnvalue+=v.addUser(username, card);
 			}
-			else {
+			else if(command[3].equals("null")){
 				returnvalue+=v.addUser(username, null);
 			}
 		}
 		else if(command[0].equals("online")) {
 			VelibSystem v=SystemList.get(command[1]);
+			try {
 			returnvalue+=v.online(Integer.parseInt(command[2]));
+			} catch (NumberFormatException e) {
+				System.err.println("Caught NumberFormatException: "+e.getMessage());
+			}
 		}
 		else if(command[0].equals("offline")) {
 			VelibSystem v=SystemList.get(command[1]);
+			try {
 			returnvalue+=v.offline(Integer.parseInt(command[2]));
+			} catch (NumberFormatException e) {
+				System.err.println("Caught NumberFormatException: "+e.getMessage());
+			}
 		}
 		else if(command[0].equals("rentbike")) {
 			VelibSystem v=SystemList.get(command[1]);
+			try {
 			returnvalue+=v.rentbike(Integer.parseInt(command[2]), Integer.parseInt(command[3]));
+			} catch (NumberFormatException e) {
+				System.err.println("Caught NumberFormatException: "+e.getMessage());
+			}
 		}
 		else if(command[0].equals("returnbike")) {
 			VelibSystem v=SystemList.get(command[1]);
-			returnvalue+=v.returnbike(Integer.parseInt(command[2]), Integer.parseInt(command[3]),command[4]);
+			try {
+				returnvalue+=v.returnbike(Integer.parseInt(command[2]), Integer.parseInt(command[3]),command[4]);
+			} catch (NumberFormatException | ParseException e) {
+				System.err.println("Caught NumberFormatException: "+e.getMessage());
+			}
 		}
 		else if(command[0].equals("sortStation")) {
 			
 		}
 		else {
-			System.out.println("The Command you entered doesn't exists,please modify if and retry!");
+			System.err.println("Command "+command[0]+" unknown,please enter a valid one!");
+			throw new UnknownCommandException(command[0]);
 		}
 		return returnvalue;
 	}
-	public static void main(final String...arguments) throws IOException, ParseException, ClassNotFoundException{
+	public static void main(final String...arguments) throws IOException, ClassNotFoundException, UnknownCommandException{
 		  SystemList=new HashMap<String,VelibSystem>();
 		  File f=new File("VelibSystems.ser");
 		  if (arguments.length < 2)
@@ -112,19 +140,15 @@ public class runtest {
 					 String str=parseCommand(c);
 			    	 fw.write(str+"\n\n");
 			      }
-				 save();
 			}
 			//	workspace need to be flushed to show the existence of the newly created file   	     
-			catch(IOException e){
+			catch(Exception e){
 				e.printStackTrace();
 			}
 			finally{
-				try{
+					save();
 					fw.close();
-				} 
-				catch(IOException e){
-					e.printStackTrace();
-				}
+		
 			  }
 			}
 				
