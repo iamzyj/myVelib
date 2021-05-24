@@ -1,4 +1,4 @@
-package myVelib.core;
+package test;
 
 public class testUI {
 	public static void main(final String[] arguments)
