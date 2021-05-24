@@ -7,6 +7,7 @@ import java.util.*;
 //可以指定一个或者随机一个大数，再加上原有从0开始的ID,不过这样取ID的时候要注意
 //station要加上rental records 和returning records 为了之后展示数据.
 //还车时暂未考虑plus staion,所以没有加上credits
+//加一个clear函数，未完成的session是不会被保存的,以及最好调用return时，必须先调用rent
 public class VelibSystem implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858953073456L;
 	private HashMap<Integer,Bicycle> bicycles;
@@ -28,7 +29,7 @@ public class VelibSystem implements java.io.Serializable{
 		this.setUsers(new HashMap<Integer,User>());
 		this.name=name;
 	}
-	public static void main(String args[]) throws ParseException, InvalidIDException, VacancyException, NoneParkingSlotException{
+	public static void main(String args[]) throws ParseException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException{
 		VelibSystem v=new VelibSystem();
 		v.setup(10, 10, 70);
 		v.addUser("ls", null);
@@ -123,7 +124,7 @@ public class VelibSystem implements java.io.Serializable{
 		u.addSession(sess);
 		return "user "+u.getUsername()+" rented a bike at "+"Station ID: "+stationID+". Time is "+sess.printStarttime();
 		}
-	public String returnbike(int userID,int stationID,String str) throws ParseException, InvalidIDException, NoneParkingSlotException {
+	public String returnbike(int userID,int stationID,String str) throws ParseException, InvalidIDException, NoneParkingSlotException, EndPriorToStartException {
 		User u=getUsers().get(userID);
 		Station s=getStations().get(stationID);
 		if (s==null || u==null) {
@@ -134,8 +135,13 @@ public class VelibSystem implements java.io.Serializable{
 		}
 		Session sess=u.getCurrentSession();
 		sess.setEndtime(str);
+		if (sess.getDuration()<=0) {
+			throw new EndPriorToStartException(str);
+		}
+		else {
 		sess.setEndStation(s);
 		sess.calculatePrice(u.getCard(), u.getCredits());
+		}
 		return "user "+u.getUsername()+" returns a bike at "+"Station ID: "+stationID+". Time is "+str+"\n"+"the total price is "+sess.getPrice();
 	}
 	public HashMap<Integer,Bicycle> getBicycles() {

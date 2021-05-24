@@ -3,9 +3,9 @@ package myVelib.Exceptions;
 import java.util.*;
 
 public class EndPriorToStartException extends Exception {
- private Date date;
- public EndPriorToStartException() {
+ private String date;
+ public EndPriorToStartException(String date) {
 	 super();
-	 System.err.println("The endtime is set before the starttime, please specify a correct endtime");
+	 System.err.println("The endtime "+date+" is set before the starttime, please specify a correct endtime");
  }
 }
