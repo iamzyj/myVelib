@@ -2,7 +2,8 @@ package myVelib.core;
 
 import java.text.ParseException;
 import java.util.*;
-
+//定义一个数组，存取最近N条Session
+//还车时暂未考虑plus staion,所以没有加上credits
 public class VelibSystem implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858953073456L;
 	private HashMap<Integer,Bicycle> bicycles;
@@ -75,12 +76,11 @@ public class VelibSystem implements java.io.Serializable{
 		
 	}
 	public String setup(int nStations, int nSlots, int nBikes) {
-		String returnvalue="Setting up System..."+"number of stations is "+nStations+", number of slots is "+nSlots+", number of Bikes is "+nBikes ;
+		String returnvalue="Setting up System "+name+" number of stations is "+nStations+", number of slots is "+nSlots+", number of Bikes is "+nBikes ;
 		this.generateStations(nStations, nSlots); 
 		this.distributeBikes(nBikes);
 		return returnvalue;
 	}
-//并没有加network name,因为都是实例方法，再加名字没法直接调用,？
 // cardtype用字符串会更好些，不然没法直接解析CLUI参数
 	public String addUser(String username,RegistrationCard card) {
 		int id=getUsers().size()+1;

@@ -1,9 +1,9 @@
-Setting up System...number of stations is 10, number of slots is 10, number of Bikes is 70
+Setting up System Paris number of stations is 10, number of slots is 10, number of Bikes is 70
 
 user ls is added...who has not a card yet
 
-user ls rented a bike at Station ID: 1. Time is 2021-05-24/17:08:18
+user ls rented a bike at Station ID: 1. Time is 2021-05-24/18:57:14
 
 user ls returns a bike at Station ID: 7. Time is 2021-5-23/12:00:00
-the total price is -29.0
+the total price is -30.0
 

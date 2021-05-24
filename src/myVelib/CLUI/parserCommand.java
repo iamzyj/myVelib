@@ -5,18 +5,18 @@ import java.text.ParseException;
 import myVelib.core.VelibSystem;
 import myVelib.core.Vlibre;
 import myVelib.core.Vmax;
-
-public class parseCommand {
-	public static String parserCommand(String[] command,VelibSystem v) throws ParseException {
+public class parserCommand {
+	public static String parseCommand(String[] command,VelibSystem v) throws ParseException {
 		String returnvalue="";
 		if(command[0].equals("setup")) {
-			if (command.length<2) {
+			VelibSystem v1=runtest.SystemList.get(command[1]);
+			if (command.length<=2) {
 //				这几个数字要从ini文件那儿读取?
-				returnvalue+=v.setup(10,10,75);
+				returnvalue+=v1.setup(10,10,75);
 //				returnvalue+="\n";
 			}
 			else {
-				returnvalue=v.setup(Integer.parseInt(command[1]), Integer.parseInt(command[2]), Integer.parseInt(command[3]));
+				returnvalue=v1.setup(Integer.parseInt(command[2]), Integer.parseInt(command[3]), Integer.parseInt(command[4]));
 			}
 		}
 		if(command[0].equals("addUser")) {
