@@ -1,4 +1,4 @@
-package myVelib;
+package myVelib.core;
 
 public class Mechanical extends Bicycle{
 

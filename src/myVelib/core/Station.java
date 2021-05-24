@@ -1,4 +1,4 @@
-package myVelib;
+package myVelib.core;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,7 @@ public class Station {
 	boolean Online;
 	boolean isPlus;
 	int slot_num;
+	boolean hasBikes;
 	
 	
 	
@@ -68,32 +69,6 @@ public class Station {
 	
 	}
 	}
-	public void removeBicycle(String type) {
-		int cnt=this.slot_num-countFree(this.slots);
-		if (cnt==0) {
-			System.out.println("No more free bicycle");
-		}
-		else {
-			for (Slot s : this.slots) {
-				if (type=="E") {
-				if (s.free==false && s.bicycle instanceof Electrical) {
-					s.free=true;
-					s.bicycle=null;
-					break;
-				}
-			}
-				
-				if (type=="M") {
-					if (s.free==false && s.bicycle instanceof Mechanical) {
-						s.free=true;
-						s.bicycle=null;
-						break;
-					}
-				}
-		}
-	
-	}
-	}
 	public void clear() {
 		for (Slot s : this.slots) {
 			
@@ -104,8 +79,8 @@ public class Station {
 		
 	}
 	public int removeBicycle() {
-		int cnt=this.slot_num-countFree(this.slots);
-		if (cnt==0) {
+		boolean hasbikes=this.hasBikes();
+		if (hasbikes==false) {
 			System.out.println("No more free bicycle");
 			return 0;
 		}
@@ -121,6 +96,13 @@ public class Station {
 	
 	}
 	return 0;
+	}
+	public boolean hasBikes() {
+		int cnt=this.slot_num-countFree(this.slots);
+		if(cnt==0) {
+			return false;
+		}
+		return true;
 	}
 
 }

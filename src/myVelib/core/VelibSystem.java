@@ -1,4 +1,4 @@
-package myVelib;
+package myVelib.core;
 
 import java.text.ParseException;
 import java.util.*;

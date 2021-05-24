@@ -1,6 +1,8 @@
-package myVelib;
+package myVelib.CLUI;
 
 import java.util.*;
+import myVelib.core.*;
+
 import java.io.*;
 import java.text.ParseException;
 //如果有时间，稍微自动化一点的CLUI
