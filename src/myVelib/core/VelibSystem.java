@@ -3,7 +3,8 @@ package myVelib.core;
 import java.text.ParseException;
 import java.util.*;
 
-public class VelibSystem {
+public class VelibSystem implements java.io.Serializable{
+	static final long serialVersionUID = 2326497858953073456L;
 	HashMap<Integer,Bicycle> bicycles;
 	HashMap<Integer,Station> stations;
 	HashMap<Integer,User> users;

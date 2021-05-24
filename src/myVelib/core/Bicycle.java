@@ -1,7 +1,9 @@
 package myVelib.core;
 
-public class Bicycle {
+import java.io.*;
 
+public class Bicycle implements Serializable {
+	static final long serialVersionUID = 3126998878902358585L;
 	private int ID;
 	public Bicycle(int ID) {
 		super();

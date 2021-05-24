@@ -2,7 +2,8 @@ package myVelib.core;
 
 import java.util.*;
 
-public class User {
+public class User implements java.io.Serializable{
+	static final long serialVersionUID = 7326497358930734556L;
 	private String username;
 	private int ID;
 	private Coordinates position;

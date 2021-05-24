@@ -4,7 +4,8 @@ import java.util.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class Session {
+public class Session implements java.io.Serializable{
+	static final long serialVersionUID = 5126497878902754556L;
 	private Station startStation;
 	private Station endStation;
 	private int duration;

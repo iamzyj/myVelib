@@ -1,6 +1,7 @@
 package myVelib.core;
 
-public class Coordinates {
+public class Coordinates implements java.io.Serializable{
+	static final long serialVersionUID = 3126497878902358585L;
 	private double x,y;
 
 	public double getX() {

@@ -2,7 +2,8 @@ package myVelib.core;
 
 import java.util.ArrayList;
 
-public class Station {
+public class Station implements java.io.Serializable{
+	static final long serialVersionUID = 2326497858930734556L;
 	Coordinates Co;
 	ArrayList<Slot> slots;
 	int ID;
