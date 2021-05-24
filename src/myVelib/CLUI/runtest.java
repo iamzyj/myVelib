@@ -24,7 +24,6 @@ public class runtest {
 				if (command.length<=2) {
 //					这几个数字要从ini文件那儿读取?
 					returnvalue+=v.setup(10,10,75);
-//					returnvalue+="\n";
 				}
 				else {
 					returnvalue=v.setup(Integer.parseInt(command[2]), Integer.parseInt(command[3]), Integer.parseInt(command[4]));
@@ -35,7 +34,6 @@ public class runtest {
 				if (command.length<=2) {
 //					这几个数字要从ini文件那儿读取?
 					returnvalue+=v.setup(10,10,75);
-//					returnvalue+="\n";
 				}
 				else {
 					returnvalue=v.setup(Integer.parseInt(command[2]), Integer.parseInt(command[3]), Integer.parseInt(command[4]));
@@ -43,7 +41,7 @@ public class runtest {
 				SystemList.put(command[1], v);
 			}
 		}
-		if(command[0].equals("addUser")) {
+		else if(command[0].equals("addUser")) {
 			String username=command[1];
 			VelibSystem v=SystemList.get(command[3]);
 			if(command[2].equals("Vlibre")) {
@@ -58,23 +56,28 @@ public class runtest {
 				returnvalue+=v.addUser(username, null);
 			}
 		}
-		if(command[0].equals("online")) {
+		else if(command[0].equals("online")) {
 			VelibSystem v=SystemList.get(command[1]);
 			returnvalue+=v.online(Integer.parseInt(command[2]));
 		}
-		if(command[0].equals("offline")) {
+		else if(command[0].equals("offline")) {
 			VelibSystem v=SystemList.get(command[1]);
 			returnvalue+=v.offline(Integer.parseInt(command[2]));
 		}
-		if(command[0].equals("rentbike")) {
+		else if(command[0].equals("rentbike")) {
 			VelibSystem v=SystemList.get(command[1]);
 			returnvalue+=v.rentbike(Integer.parseInt(command[2]), Integer.parseInt(command[3]));
 		}
-		if(command[0].equals("returnbike")) {
+		else if(command[0].equals("returnbike")) {
 			VelibSystem v=SystemList.get(command[1]);
 			returnvalue+=v.returnbike(Integer.parseInt(command[2]), Integer.parseInt(command[3]),command[4]);
 		}
-		
+		else if(command[0].equals("sortStation")) {
+			
+		}
+		else {
+			System.out.println("The Command you entered doesn't exists,please modify if and retry!");
+		}
 		return returnvalue;
 	}
 	public static void main(final String...arguments) throws IOException, ParseException, ClassNotFoundException{
@@ -132,8 +135,7 @@ public class runtest {
 			out.writeObject(SystemList);
 			out.close();
 			fileOut.close();
-			System.out.printf("\nAll modifications have been saved in the file \"saveFileVelib.ser\"\n"
-					+ "To load this modification enter command \"load\".\n\n");
+			System.out.printf("Systems have been saved in the file \"saveFileVelib.ser\"\n");
 	}
 	@SuppressWarnings("unchecked")
 	public static Map<String, VelibSystem> loadSystems() throws IOException, ClassNotFoundException{

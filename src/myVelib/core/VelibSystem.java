@@ -2,7 +2,7 @@ package myVelib.core;
 
 import java.text.ParseException;
 import java.util.*;
-//定义一个数组，存取最近N条Session
+//可以指定一个或者随机一个大数，再加上原有从0开始的ID,不过这样取ID的时候要注意
 //还车时暂未考虑plus staion,所以没有加上credits
 public class VelibSystem implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858953073456L;

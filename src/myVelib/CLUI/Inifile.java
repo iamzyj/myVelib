@@ -6,7 +6,7 @@ import myVelib.core.*;
 
 public class Inifile {
 	public static void writeIniFile() throws IOException {
-		String filename="myVelib.ini";
+		String filename="my_velib.ini";
 		VelibSystem v=velibConfiguraiton();
 		File f=new File(filename);
 		try {
@@ -14,7 +14,7 @@ public class Inifile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		FileOutputStream file = new FileOutputStream("myVelib.ini");
+		FileOutputStream file = new FileOutputStream("my_velib.ini");
 		ObjectOutputStream out = new ObjectOutputStream(file);
 		out.writeObject(v);
 		out.close();
@@ -26,7 +26,7 @@ public class Inifile {
 	}
 	public static VelibSystem readIniFile() throws IOException, ClassNotFoundException {
 		VelibSystem v=null;
-		FileInputStream fileIn = new FileInputStream("myVelib.ini");
+		FileInputStream fileIn = new FileInputStream("my_velib.ini");
 		ObjectInputStream in = new ObjectInputStream(fileIn);
 		v = (VelibSystem) in.readObject(); // requires casting into Employee type
 		in.close();
