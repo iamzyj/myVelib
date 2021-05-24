@@ -15,7 +15,7 @@ public class runtest {
 		VelibSystem v=Inifile.readIniFile();
 		return v;
 	}
-	public static void main(final String...arguments) throws IOException, ParseException{
+	public static void main(final String...arguments) throws IOException, ParseException, ClassNotFoundException{
 		  if (arguments.length < 2)
 		   {
 		      System.out.println("filename is not provided");
@@ -29,7 +29,10 @@ public class runtest {
 			  String newfilename=origin[0]+output;
 			  FileWriter fw = null;
 			  File file=null;
-			  VelibSystem v=new VelibSystem();
+			  HashMap<String,VelibSystem> SystemList=new HashMap<String,VelibSystem>();
+			  VelibSystem paris=loadingConfiguration();
+			  SystemList.put("Paris",paris);
+			  VelibSystem v=new VelibSystem("v");
 			try{ 
 				file=new File(newfilename);
 				file.createNewFile();
