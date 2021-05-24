@@ -10,6 +10,11 @@ import java.text.ParseException;
 //System其实还有面积的设置，应该在coordinates 那里修改
 //addUser应该来一个coordinates
 public class runtest {
+	public static VelibSystem loadingConfiguration() throws IOException, ClassNotFoundException {
+		Inifile.writeIniFile();
+		VelibSystem v=Inifile.readIniFile();
+		return v;
+	}
 	public static void main(final String...arguments) throws IOException, ParseException{
 		  if (arguments.length < 2)
 		   {
