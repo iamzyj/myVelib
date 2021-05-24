@@ -13,10 +13,12 @@ public class Session implements java.io.Serializable{
 	private Time endtime;
 	private Bicycle bicycle;
 	private double price;
+	private boolean finished;
 	public Session(Station startStation,Bicycle bicycle) {
 		this.startStation=startStation;
 		this.setStarttime(new Time());
 		this.bicycle=bicycle;
+		this.finished=false;
 	}
 	public Session() {
 		this.setStarttime(new Time());

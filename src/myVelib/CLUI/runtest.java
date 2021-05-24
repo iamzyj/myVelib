@@ -111,12 +111,12 @@ public class runtest {
 	public static void main(final String...arguments) throws IOException, ClassNotFoundException, UnknownCommandException{
 		  SystemList=new HashMap<String,VelibSystem>();
 		  File f=new File("VelibSystems.ser");
-		  if (arguments.length < 2)
+		  if (arguments.length < 1)
 		   {
 		      System.out.println("filename is not provided");
 		   }
 		   else
-		   {  String filename=arguments[1];
+		   {  String filename=arguments[0];
 		      String test=readCommand.readTextFile(filename);
 		      String [] commands=test.split("[\n]");
 		   	  String output="output.txt";

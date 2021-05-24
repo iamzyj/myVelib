@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.util.*;
 //可以指定一个或者随机一个大数，再加上原有从0开始的ID,不过这样取ID的时候要注意
 //station要加上rental records 和returning records 为了之后展示数据.
-//还车时暂未考虑plus staion,所以没有加上credits
+//还车时暂未考虑赋值plus staion
 //加一个clear函数，未完成的session是不会被保存的,以及最好调用return时，必须先调用rent
 public class VelibSystem implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858953073456L;
@@ -140,6 +140,9 @@ public class VelibSystem implements java.io.Serializable{
 		}
 		else {
 		sess.setEndStation(s);
+		if (s.isPlus==true) {
+			u.setCredits(u.getCredits()+5);
+		}
 		sess.calculatePrice(u.getCard(), u.getCredits());
 		}
 		return "user "+u.getUsername()+" returns a bike at "+"Station ID: "+stationID+". Time is "+str+"\n"+"the total price is "+sess.getPrice();
