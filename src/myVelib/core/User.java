@@ -45,8 +45,11 @@ public class User implements java.io.Serializable{
 	}
 	public Session getCurrentSession() {
 		int len=this.sessions.size();
-		if(len>0) {
-			return this.sessions.get(len-1);
+		if(len>0) {			
+			if(!this.sessions.get(len-1).isFinished()) {
+				return this.sessions.get(len-1);
+			}
+			return null;
 		}
 		return null;
 	}
@@ -55,6 +58,14 @@ public class User implements java.io.Serializable{
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public boolean hasRentedBefore() {
+		for(Session s:sessions) {
+			if(!s.isFinished()) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

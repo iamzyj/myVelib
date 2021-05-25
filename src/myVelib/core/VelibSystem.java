@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.util.*;
 //可以指定一个或者随机一个大数，再加上原有从0开始的ID,不过这样取ID的时候要注意
 //station要加上rental records 和returning records 为了之后展示数据.
-//还车时暂未考虑赋值plus staion
+//暂未考虑赋值plus staion
 //加一个clear函数，未完成的session是不会被保存的,以及最好调用return时，必须先调用rent
 public class VelibSystem implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858953073456L;
@@ -29,7 +29,7 @@ public class VelibSystem implements java.io.Serializable{
 		this.setUsers(new HashMap<Integer,User>());
 		this.name=name;
 	}
-	public static void main(String args[]) throws ParseException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException{
+	public static void main(String args[]) throws ParseException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, NoBikeToReturnException, RentMoreThanOneBikeException{
 		VelibSystem v=new VelibSystem();
 		v.setup(10, 10, 70);
 		v.addUser("ls", null);
@@ -110,7 +110,7 @@ public class VelibSystem implements java.io.Serializable{
 		s.Online=false;
 		return "Station ID: "+stationID+" is online rightnow";
 	}
-	public String rentbike(int userID,int stationID) throws InvalidIDException, VacancyException {		
+	public String rentbike(int userID,int stationID) throws InvalidIDException, VacancyException, RentMoreThanOneBikeException {	
 		User u=getUsers().get(userID);
 		Station s=getStations().get(stationID);
 		if (s==null || u==null) {
@@ -119,12 +119,15 @@ public class VelibSystem implements java.io.Serializable{
 		if (s.hasBikes()==false) {
 			throw new VacancyException(s.ID);
 		}
+		if(u.hasRentedBefore()) {
+			throw new RentMoreThanOneBikeException();
+		}
 		int bicycleID=s.removeBicycle();
 		Session sess=new Session(s,getBicycles().get(bicycleID));
 		u.addSession(sess);
 		return "user "+u.getUsername()+" rented a bike at "+"Station ID: "+stationID+". Time is "+sess.printStarttime();
 		}
-	public String returnbike(int userID,int stationID,String str) throws ParseException, InvalidIDException, NoneParkingSlotException, EndPriorToStartException {
+	public String returnbike(int userID,int stationID,String str) throws ParseException, InvalidIDException, NoneParkingSlotException, EndPriorToStartException, NoBikeToReturnException {
 		User u=getUsers().get(userID);
 		Station s=getStations().get(stationID);
 		if (s==null || u==null) {
@@ -134,6 +137,9 @@ public class VelibSystem implements java.io.Serializable{
 			throw new NoneParkingSlotException(s.ID);
 		}
 		Session sess=u.getCurrentSession();
+		if (sess==null) {
+			throw new NoBikeToReturnException();
+		}
 		sess.setEndtime(str);
 		if (sess.getDuration()<=0) {
 			throw new EndPriorToStartException(str);
@@ -144,6 +150,7 @@ public class VelibSystem implements java.io.Serializable{
 			u.setCredits(u.getCredits()+5);
 		}
 		sess.calculatePrice(u.getCard(), u.getCredits());
+		sess.setFinished(true);
 		}
 		return "user "+u.getUsername()+" returns a bike at "+"Station ID: "+stationID+". Time is "+str+"\n"+"the total price is "+sess.getPrice();
 	}

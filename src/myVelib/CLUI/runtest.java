@@ -18,7 +18,7 @@ public class runtest {
 		VelibSystem v=Inifile.readIniFile();
 		return v;
 	}
-	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, IOException{
+	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, IOException, NoBikeToReturnException, RentMoreThanOneBikeException{
 		String returnvalue="";
 		if(command[0].equals("setup")) {
 			VelibSystem v=SystemList.get(command[1]);

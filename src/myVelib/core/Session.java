@@ -18,7 +18,7 @@ public class Session implements java.io.Serializable{
 		this.startStation=startStation;
 		this.setStarttime(new Time());
 		this.bicycle=bicycle;
-		this.finished=false;
+		this.setFinished(false);
 	}
 	public Session() {
 		this.setStarttime(new Time());
@@ -109,6 +109,12 @@ public class Session implements java.io.Serializable{
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public boolean isFinished() {
+		return finished;
+	}
+	public void setFinished(boolean finished) {
+		this.finished = finished;
 	}
 	
 }
