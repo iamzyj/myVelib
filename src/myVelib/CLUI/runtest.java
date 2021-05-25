@@ -18,7 +18,7 @@ public class runtest {
 		VelibSystem v=Inifile.readIniFile();
 		return v;
 	}
-	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException{
+	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, IOException{
 		String returnvalue="";
 		if(command[0].equals("setup")) {
 			VelibSystem v=SystemList.get(command[1]);
@@ -102,6 +102,10 @@ public class runtest {
 		else if(command[0].equals("sortStation")) {
 			
 		}
+//		if save, SystemList will be write be into VelibSystems.ser
+		else if(command[0].equals("save")) {
+			save();
+		}
 		else {
 			System.err.println("Command "+command[0]+" unknown,please enter a valid one!");
 			throw new UnknownCommandException(command[0]);
@@ -146,7 +150,6 @@ public class runtest {
 				e.printStackTrace();
 			}
 			finally{
-					save();
 					fw.close();
 		
 			  }
