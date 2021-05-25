@@ -8,7 +8,7 @@ public class Station implements java.io.Serializable{
 	ArrayList<Slot> slots;
 	int ID;
 	boolean Online;
-	boolean isPlus;
+	public boolean isPlus;
 	int slot_num;
 	boolean hasBikes;
 	

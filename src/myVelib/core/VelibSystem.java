@@ -6,13 +6,12 @@ import java.text.ParseException;
 import java.util.*;
 //可以指定一个或者随机一个大数，再加上原有从0开始的ID,不过这样取ID的时候要注意
 //station要加上rental records 和returning records 为了之后展示数据.
-//暂未考虑赋值plus staion
-//加一个clear函数，未完成的session是不会被保存的,以及最好调用return时，必须先调用rent
 public class VelibSystem implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858953073456L;
 	private HashMap<Integer,Bicycle> bicycles;
 	private HashMap<Integer,Station> stations;
 	private HashMap<Integer,User> users;
+	public double PlusStationPercentage=0.4;
 	double length;
 	double width;
 //	ArrayList<Station> stations =new ArrayList<Station>();
@@ -34,8 +33,25 @@ public class VelibSystem implements java.io.Serializable{
 		v.setup(10, 10, 70);
 		v.addUser("ls", null);
 		v.rentbike(1, 1);
-		String p=v.returnbike(1, 7, "2021-05-22/19:00:00");
+		String p=v.returnbike(1, 7, "2021-05-26/19:00:00");
 		System.out.println(p);
+	}
+	public void setPlusStation() {
+		int PlusStationNum=(int) Math.ceil(stations.size()*PlusStationPercentage);
+		int counter=0;
+		while(counter<PlusStationNum) {
+			for(Integer key:getStations().keySet()) {
+				Station s=getStations().get(key);
+				double rand=Math.random();
+				if(rand<=0.4) {
+					s.isPlus=true;	
+					counter+=1;
+				}
+				if(counter==PlusStationNum) {
+					break;
+				}
+		}
+		}
 	}
 	public void generateStations(int nStations,int nSlots) {
 		HashSet<Coordinates> c=new HashSet<Coordinates>();
@@ -83,6 +99,7 @@ public class VelibSystem implements java.io.Serializable{
 		String returnvalue="Setting up System "+name+" number of stations is "+nStations+", number of slots is "+nSlots+", number of Bikes is "+nBikes ;
 		this.generateStations(nStations, nSlots); 
 		this.distributeBikes(nBikes);
+		this.setPlusStation();
 		return returnvalue;
 	}
 // cardtype用字符串会更好些，不然没法直接解析CLUI参数

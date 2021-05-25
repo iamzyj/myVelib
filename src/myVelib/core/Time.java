@@ -15,7 +15,11 @@ public class Time implements java.io.Serializable{
 	public Time(String s) throws ParseException {
 		super();
 		SimpleDateFormat sdf = new SimpleDateFormat(this.format);
+		try {
 		this.time=sdf.parse(s);
+		}catch(ParseException e) {
+			System.err.println("The time format is invalid, please follow the right one of "+format);
+		}
 	}
 
 }
