@@ -1,11 +1,12 @@
 package myVelib.CLUI;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.*;
 import myVelib.core.*;
 
 public class Inifile {
-	public static void writeIniFile() throws IOException {
+	public static void writeIniFile() throws IOException, ParseException {
 		String filename="my_velib.ini";
 		VelibSystem v=velibConfiguraiton();
 		File f=new File(filename);
@@ -19,7 +20,7 @@ public class Inifile {
 		out.writeObject(v);
 		out.close();
 	}
-	public static VelibSystem velibConfiguraiton() {
+	public static VelibSystem velibConfiguraiton() throws ParseException {
 		VelibSystem v=new VelibSystem("Paris");
 		v.setup(10, 10, 70);
 		return v;
@@ -33,7 +34,7 @@ public class Inifile {
 		fileIn.close();
 		return v;
 	}
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
 		Inifile.writeIniFile();
 		VelibSystem v=readIniFile();
 		System.out.println(v.getBicycles().get(1));

@@ -13,12 +13,12 @@ import java.text.ParseException;
 //ser文件可用来存取，并且下一次可以用来读取
 public class runtest {
 	public static Map<String, VelibSystem> SystemList;
-	public static VelibSystem loadingConfiguration() throws IOException, ClassNotFoundException {
+	public static VelibSystem loadingConfiguration() throws IOException, ClassNotFoundException, ParseException {
 		Inifile.writeIniFile();
 		VelibSystem v=Inifile.readIniFile();
 		return v;
 	}
-	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, IOException, NoBikeToReturnException, RentMoreThanOneBikeException{
+	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, IOException, NoBikeToReturnException, RentMoreThanOneBikeException, ParseException{
 		String returnvalue="";
 		if(command[0].equals("setup")) {
 			VelibSystem v=SystemList.get(command[1]);
@@ -112,7 +112,7 @@ public class runtest {
 		}
 		return returnvalue;
 	}
-	public static void main(final String...arguments) throws IOException, ClassNotFoundException, UnknownCommandException{
+	public static void main(final String...arguments) throws IOException, ClassNotFoundException, UnknownCommandException, ParseException{
 		  SystemList=new HashMap<String,VelibSystem>();
 		  File f=new File("VelibSystems.ser");
 		  if (arguments.length < 1)

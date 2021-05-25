@@ -1,6 +1,7 @@
 package myVelib.core;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.util.*;
 
 public class Station implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858930734556L;
@@ -11,11 +12,17 @@ public class Station implements java.io.Serializable{
 	public boolean isPlus;
 	int slot_num;
 	boolean hasBikes;
+	public int rentNum;
+	public int returnNum;
+ //	calculating balance between the following interval 
+	static String starttimeInterval="2021-05-26/18:00:00";
+	static String endtimeInterval="2021-06-30/18:00:00";
+	double occupationRate;
 	
 	
 	
 	
-	public Station(Coordinates co, int slots_n, int iD, boolean online) {
+	public Station(Coordinates co, int slots_n, int iD, boolean online) throws ParseException {
 		super();
 		Co = co;
 		this.slots = Station.GenerateSlot(slots_n);
@@ -23,8 +30,10 @@ public class Station implements java.io.Serializable{
 		Online = online;
 		isPlus=false;
 		slot_num=slots_n;
+		rentNum=0;
+		returnNum=0;
 	}
-	public Station(Coordinates co, int slots_n, int iD, boolean online,boolean isplus) {
+	public Station(Coordinates co, int slots_n, int iD, boolean online,boolean isplus) throws ParseException {
 		super();
 		Co = co;
 		this.slots = Station.GenerateSlot(slots_n);
@@ -32,14 +41,17 @@ public class Station implements java.io.Serializable{
 		Online = online;
 		isPlus=isplus;
 		slot_num=slots_n;
+		rentNum=0;
+		returnNum=0;
 	}
 	
-	public static ArrayList<Slot> GenerateSlot(int n) {
+	public static ArrayList<Slot> GenerateSlot(int n) throws ParseException {
 		ArrayList<Slot>  slots = new ArrayList<Slot>();
 		for (int i=1;i<=n;i++) {
 			Slot s=new Slot();
 			s.ID=i;
 			s.free=true;
+			s.freeTimeInterval.add(new Time(starttimeInterval).time);
 			slots.add(s);
 		}
 		return slots;
@@ -62,6 +74,7 @@ public class Station implements java.io.Serializable{
 		else {
 			for (Slot s : this.slots) {
 				if (s.free==true) {
+					s.freeTimeInterval.add(new Date());
 					s.free=false;
 					s.bicycle=b;
 					break;
@@ -90,6 +103,7 @@ public class Station implements java.io.Serializable{
 				
 				if (s.free==false) {
 					s.free=true;
+					s.freeTimeInterval.add(new Date());
 					int id=s.bicycle.getID();
 					return id;
 				}
@@ -104,6 +118,25 @@ public class Station implements java.io.Serializable{
 			return false;
 		}
 		return true;
+	}
+	public double calculateBalance() throws ParseException {
+		Date start=new Time(starttimeInterval).time;
+		Date end=new Time(endtimeInterval).time;
+		int timeInterval=(int)((end.getTime()-start.getTime())/1000/60);
+		for(Slot s:slots) {
+			s.freeTimeInterval.add(new Time(endtimeInterval).time);
+			for(int i=0;i<s.freeTimeInterval.size();i+=2) {
+				long f=s.freeTimeInterval.get(i+1).getTime()-s.freeTimeInterval.get(i).getTime();
+				s.freetime+=(int)(f/1000/60);
+			}
+		}
+		int totalFreeTime=0;
+		for(Slot s:slots) {
+			totalFreeTime+=s.freetime;
+		}
+		double balance=1-totalFreeTime/timeInterval*slot_num;
+		occupationRate=balance;
+		return balance;
 	}
 
 }

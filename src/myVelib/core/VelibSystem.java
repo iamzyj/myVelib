@@ -11,6 +11,7 @@ public class VelibSystem implements java.io.Serializable{
 	private HashMap<Integer,Bicycle> bicycles;
 	private HashMap<Integer,Station> stations;
 	private HashMap<Integer,User> users;
+	private ArrayList<Session> sessions;
 	public double PlusStationPercentage=0.4;
 	double length;
 	double width;
@@ -53,7 +54,7 @@ public class VelibSystem implements java.io.Serializable{
 		}
 		}
 	}
-	public void generateStations(int nStations,int nSlots) {
+	public void generateStations(int nStations,int nSlots) throws ParseException {
 		HashSet<Coordinates> c=new HashSet<Coordinates>();
 		while(c.size()<nStations) {
 			c.add(new Coordinates());
@@ -95,7 +96,7 @@ public class VelibSystem implements java.io.Serializable{
 			}
 		
 	}
-	public String setup(int nStations, int nSlots, int nBikes) {
+	public String setup(int nStations, int nSlots, int nBikes) throws ParseException {
 		String returnvalue="Setting up System "+name+" number of stations is "+nStations+", number of slots is "+nSlots+", number of Bikes is "+nBikes ;
 		this.generateStations(nStations, nSlots); 
 		this.distributeBikes(nBikes);
@@ -141,7 +142,9 @@ public class VelibSystem implements java.io.Serializable{
 		}
 		int bicycleID=s.removeBicycle();
 		Session sess=new Session(s,getBicycles().get(bicycleID));
+		s.rentNum+=1;
 		u.addSession(sess);
+		sessions.add(sess);
 		return "user "+u.getUsername()+" rented a bike at "+"Station ID: "+stationID+". Time is "+sess.printStarttime();
 		}
 	public String returnbike(int userID,int stationID,String str) throws ParseException, InvalidIDException, NoneParkingSlotException, EndPriorToStartException, NoBikeToReturnException {
@@ -168,8 +171,22 @@ public class VelibSystem implements java.io.Serializable{
 		}
 		sess.calculatePrice(u.getCard(), u.getCredits());
 		sess.setFinished(true);
+		s.returnNum+=1;
 		}
 		return "user "+u.getUsername()+" returns a bike at "+"Station ID: "+stationID+". Time is "+str+"\n"+"the total price is "+sess.getPrice();
+	}
+	public String displayStation(int ID) {
+		Station s=stations.get(ID);
+		return ""+s.rentNum+s.returnNum;
+	}
+	public Map<Integer,Double> calAllStationBalance(int ID) throws ParseException {
+		Map<Integer,Double> m=new HashMap<Integer,Double>();
+		for(Integer key:getStations().keySet()) {
+			Station s=getStations().get(key);
+			s.calculateBalance();
+			m.put(s.ID, s.occupationRate);
+		}
+		return m;
 	}
 	public HashMap<Integer,Bicycle> getBicycles() {
 		return bicycles;
