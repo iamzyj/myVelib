@@ -95,17 +95,8 @@ public class clui {
 		else if(command[0].equals("addUser")) {
 			String username=command[1];
 			VelibSystem v=SystemList.get(command[3]);
-			if(command[2].equals("Vlibre")) {
-				Vlibre card=new Vlibre();
-				returnvalue+=v.addUser(username, card);
-			}
-			else if(command[2].equals("Vmax")) {
-				Vmax card=new Vmax();
-				returnvalue+=v.addUser(username, card);
-			}
-			else if(command[2].equals("null")){
-				returnvalue+=v.addUser(username, null);
-			}
+			RegistrationCard card=CardFactory.createcard(command[2]);
+			returnvalue+=v.addUser(username, card);
 		}
 		else if(command[0].equals("online")) {
 			VelibSystem v=SystemList.get(command[1]);

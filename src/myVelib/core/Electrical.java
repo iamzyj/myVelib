@@ -1,13 +1,16 @@
 package myVelib.core;
 
-public class Electrical extends Bicycle implements java.io.Serializable{
+public class Electrical implements Bicycle, java.io.Serializable{
 	static final long serialVersionUID = 3126497878902756556L;
+	private int ID;
 	public Electrical(int ID) {
-		super(ID);
+		this.ID=ID;
 		// TODO Auto-generated constructor stub
 	}
-	
-	public static void main(String args[]) {
-	
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
 	}
 }

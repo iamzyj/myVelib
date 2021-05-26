@@ -7,8 +7,6 @@ import myVelib.core.*;
 
 import java.io.*;
 import java.text.ParseException;
-//如果有时间，稍微自动化一点的CLUI
-//加一个输入的设置，创建文件testSenario0，并自动载入ini文件，接下来输入命令，写到testScenario0文件中，输入runtest就是执行这个文件
 //System其实还有面积的设置，应该在coordinates 那里修改
 //ser文件可用来存取，并且下一次可以用来读取
 public class runtest {

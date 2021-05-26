@@ -73,6 +73,7 @@ public class VelibSystem implements java.io.Serializable{
 		}
 	}
 	public void distributeBikes(int nBikes) throws ParseException {
+		BicycleFactory bf=new BicycleFactory();
 		int nMech=(int)(nBikes*0.7);
 		int nElec=nBikes-nMech;
 		int id=0;
@@ -80,7 +81,7 @@ public class VelibSystem implements java.io.Serializable{
 			for(Integer key:getStations().keySet()) {
 				Station s=getStations().get(key);
 				if (nMech>0) {
-				Mechanical m=new Mechanical(id);
+				Mechanical m=(Mechanical) bf.createBike("M", id);
 				s.setupBicycle(m);
 				getBicycles().put(id,m);
 				id+=1;
@@ -92,7 +93,7 @@ public class VelibSystem implements java.io.Serializable{
 			for(Integer key:getStations().keySet()) {
 				Station s=getStations().get(key);
 				if (nElec>0) {
-				Electrical e=new Electrical(id);
+				Electrical e=(Electrical) bf.createBike("E", id);
 				s.setupBicycle(e);
 				getBicycles().put(id,e);
 				id+=1;

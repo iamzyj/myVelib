@@ -2,7 +2,7 @@ package myVelib.core;
 
 import java.util.*;
 
-public class Vlibre extends RegistrationCard{
+public class Vlibre implements RegistrationCard{
 	private static final long serialVersionUID = 1382438272515045956L;
 	private String name;
 	public Vlibre() {
