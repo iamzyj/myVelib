@@ -22,20 +22,25 @@ public class VelibSystem implements java.io.Serializable{
 		this.setBicycles(new HashMap<Integer,Bicycle>());
 		this.setStations(new HashMap<Integer,Station>());
 		this.setUsers(new HashMap<Integer,User>());
+		this.sessions=new ArrayList<Session>();
 	}
 	public VelibSystem(String name) {
 		this.setBicycles(new HashMap<Integer,Bicycle>());
 		this.setStations(new HashMap<Integer,Station>());
 		this.setUsers(new HashMap<Integer,User>());
 		this.name=name;
+		this.sessions=new ArrayList<Session>();
 	}
 	public static void main(String args[]) throws ParseException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, NoBikeToReturnException, RentMoreThanOneBikeException{
 		VelibSystem v=new VelibSystem();
+		Map<Integer,Double> m=new HashMap<Integer,Double>();
 		v.setup(10, 10, 70);
 		v.addUser("ls", null);
 		v.rentbike(1, 1);
-		String p=v.returnbike(1, 7, "2021-05-26/19:00:00");
-		System.out.println(p);
+		String p=v.returnbike(1, 7, "2021-06-16/19:00:00");
+		m=v.calAllStationBalance();
+		System.out.println(m.get(1));
+		
 	}
 	public void setPlusStation() {
 		int PlusStationNum=(int) Math.ceil(stations.size()*PlusStationPercentage);
@@ -52,6 +57,7 @@ public class VelibSystem implements java.io.Serializable{
 					break;
 				}
 		}
+//		System.out.println(counter);
 		}
 	}
 	public void generateStations(int nStations,int nSlots) throws ParseException {
@@ -166,10 +172,11 @@ public class VelibSystem implements java.io.Serializable{
 		}
 		else {
 		sess.setEndStation(s);
+		sess.calculatePrice(u.getCard(), u.getCredits());
+//		add credits for the next ride
 		if (s.isPlus==true) {
 			u.setCredits(u.getCredits()+5);
 		}
-		sess.calculatePrice(u.getCard(), u.getCredits());
 		sess.setFinished(true);
 		s.returnNum+=1;
 		}
@@ -179,7 +186,7 @@ public class VelibSystem implements java.io.Serializable{
 		Station s=stations.get(ID);
 		return ""+s.rentNum+s.returnNum;
 	}
-	public Map<Integer,Double> calAllStationBalance(int ID) throws ParseException {
+	public Map<Integer,Double> calAllStationBalance() throws ParseException {
 		Map<Integer,Double> m=new HashMap<Integer,Double>();
 		for(Integer key:getStations().keySet()) {
 			Station s=getStations().get(key);

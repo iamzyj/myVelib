@@ -15,9 +15,9 @@ public class Station implements java.io.Serializable{
 	public int rentNum;
 	public int returnNum;
  //	calculating balance between the following interval 
-	static String starttimeInterval="2021-05-26/18:00:00";
+	static String starttimeInterval="2021-05-26/13:00:00";
 	static String endtimeInterval="2021-06-30/18:00:00";
-	double occupationRate;
+	public double occupationRate;
 	
 	
 	
@@ -25,29 +25,29 @@ public class Station implements java.io.Serializable{
 	public Station(Coordinates co, int slots_n, int iD, boolean online) throws ParseException {
 		super();
 		Co = co;
-		this.slots = Station.GenerateSlot(slots_n);
 		ID = iD;
 		Online = online;
 		isPlus=false;
 		slot_num=slots_n;
+		this.slots = GenerateSlot();
 		rentNum=0;
 		returnNum=0;
 	}
 	public Station(Coordinates co, int slots_n, int iD, boolean online,boolean isplus) throws ParseException {
 		super();
 		Co = co;
-		this.slots = Station.GenerateSlot(slots_n);
 		ID = iD;
 		Online = online;
 		isPlus=isplus;
 		slot_num=slots_n;
+		this.slots = GenerateSlot();
 		rentNum=0;
 		returnNum=0;
 	}
 	
-	public static ArrayList<Slot> GenerateSlot(int n) throws ParseException {
+	public ArrayList<Slot> GenerateSlot() throws ParseException {
 		ArrayList<Slot>  slots = new ArrayList<Slot>();
-		for (int i=1;i<=n;i++) {
+		for (int i=1;i<=slot_num;i++) {
 			Slot s=new Slot();
 			s.ID=i;
 			s.free=true;
