@@ -67,5 +67,8 @@ public class User implements java.io.Serializable{
 		}
 		return false;
 	}
+	public ArrayList<Session> getSessions(){
+		return this.sessions;
+	}
 	
 }

@@ -57,9 +57,6 @@ public class clui {
 	}
 	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, IOException, NoBikeToReturnException, RentMoreThanOneBikeException, ParseException, ClassNotFoundException{
 		String returnvalue="";
-		if (command[0].equals("runtest")) {
-			runtest(command[1]);
-		}
 		if(command[0].equals("setup")) {
 			VelibSystem v=SystemList.get(command[1]);
 			if(v!=null) {
@@ -91,6 +88,10 @@ public class clui {
 				}
 				SystemList.put(command[1], v);
 			}
+		}
+		else if (command[0].equals("runtest")) {
+			runtest(command[1]);
+			System.out.println("please refresh the workspace to checkout the output....");
 		}
 		else if(command[0].equals("addUser")) {
 			String username=command[1];
@@ -129,6 +130,18 @@ public class clui {
 			} catch (NumberFormatException | ParseException e) {
 				System.err.println("Caught NumberFormatException: "+e.getMessage());
 			}
+		}
+		else if (command[0].equals("displayStation")) {
+			VelibSystem v=SystemList.get(command[1]);
+			returnvalue+=v.displayStation(Integer.parseInt(command[2]));
+		}
+		else if (command[0].equals("displayUser")) {
+			VelibSystem v=SystemList.get(command[1]);
+			returnvalue+=v.displayUser(Integer.parseInt(command[2]));
+		}
+        else if (command[0].equals("display")) {
+        	VelibSystem v=SystemList.get(command[1]);
+        	returnvalue+=v.displaySystem();
 		}
 		else if(command[0].equals("sortStation")) {
 			

@@ -44,7 +44,7 @@ public class Session implements java.io.Serializable{
 	public void setEndStation(Station endStation) {
 		this.endStation = endStation;
 	}
-	public long getDuration() {
+	public int getDuration() {
 		return duration;
 	}
 	public void setDuration(int duration) {

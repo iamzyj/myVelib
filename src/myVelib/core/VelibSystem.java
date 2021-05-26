@@ -184,9 +184,51 @@ public class VelibSystem implements java.io.Serializable{
 		}
 		return "user "+u.getUsername()+" returns a bike at "+"Station ID: "+stationID+". Time is "+str+"\n"+"the total price is "+sess.getPrice();
 	}
-	public String displayStation(int ID) {
+	public String displayStation(int ID) throws ParseException {
 		Station s=stations.get(ID);
-		return ""+s.rentNum+s.returnNum;
+		s.calculateBalance();
+		return "Station ID"+ID+", currentState is "+(s.Online==true?"online":"offline")+(s.isPlus==true?", is plus station:":", is not plus station ")+", Number of free slots: "+s.countFree()+", TotalRentNum is "+s.rentNum+", TotalReturnNum is "+s.rentNum+s.returnNum+", OccupationRate is "+s.occupationRate;
+	}
+	public String displayrecords() {
+		String str="";
+		for(Integer key:getUsers().keySet()){
+			User u=getUsers().get(key);
+			for(Session s:u.getSessions()) {
+			str+="user: "+u.getUsername()+", startstation: "+s.getStartStation()+", endstation: "+s.getEndStation()+", duration: "+s.getDuration()+", price: "+s.getPrice()+"\n";
+			}
+		}
+		return str;
+	}
+	public String displayUser(int ID) {
+		User u=getUsers().get(ID);
+		int totalDuration=0;
+		int totalRentNum=u.getSessions().size();
+		double totalCharge=0.0;
+		for(Session s:u.getSessions()) {
+			totalDuration+=s.getDuration();
+			totalCharge+=s.getPrice();
+		}
+		return "user "+u.getUsername()+", credit: "+u.getCredits()+", TotalRentNumber: "+totalRentNum+", TotalDuration: "+totalDuration+"mins"+", TotalCharge: "+totalCharge+"ву";
+	}
+	public String displaySystem() throws ParseException {
+		String str="";
+		str+=displayAllStations();
+		str+=displayAllUsers();
+		return str;
+	}
+	public String displayAllStations() throws ParseException {
+		String str="";
+		for(Integer key:getStations().keySet()) {
+			str+=displayStation(key)+"\n";
+		}
+		return str;
+	}
+	public String displayAllUsers() {
+		String str="";
+		for(Integer key:getUsers().keySet()) {
+			str+=displayUser(key)+"\n";
+		}
+		return str;
 	}
 	public Map<Integer,Double> calAllStationBalance() throws ParseException {
 		Map<Integer,Double> m=new HashMap<Integer,Double>();
