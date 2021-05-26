@@ -2,21 +2,25 @@ Setting up System Paris number of stations is 10, number of slots is 10, number 
 
 user ls is added...who has not a card yet
 
-user ls rented a bike at Station ID: 1. Time is 2021-05-26/22:57:28
+user ls rented a bike at Station ID: 1. Time is 2021-05-27/00:12:45
 
 user ls returns a bike at Station ID: 7. Time is 2021-5-27/12:00:00
-the total price is 14.0
+the total price is 12.0
 
-Station ID0, currentState is online, Number of free slots2, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.7999211045364891
-Station ID1, currentState is online, Number of free slots4, TotalRentNum is 1, TotalReturnNum is 10, OccupationRate is 0.6011104536489151
-Station ID2, currentState is online, Number of free slots3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID3, currentState is online, Number of free slots3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID4, currentState is online, Number of free slots3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID5, currentState is online, Number of free slots3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID6, currentState is online, Number of free slots3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID7, currentState is online, Number of free slots2, TotalRentNum is 0, TotalReturnNum is 01, OccupationRate is 0.7972090729783037
-Station ID8, currentState is online, Number of free slots3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID9, currentState is online, Number of free slots4, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.5999408284023668
-user ls, credit: 5.0, TotalRentNumber: 1, TotalDuration: 782mins, TotalCharge: 14.0ву
+Station ID0, currentState is online, is not plus station , Number of free slots: 2, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.7999211045364891
+Station ID1, currentState is online, is plus station:, Number of free slots: 4, TotalRentNum is 1, TotalReturnNum is 10, OccupationRate is 0.601258382642998
+Station ID2, currentState is online, is plus station:, Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID3, currentState is online, is plus station:, Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID4, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID5, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID6, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID7, currentState is online, is not plus station , Number of free slots: 2, TotalRentNum is 0, TotalReturnNum is 01, OccupationRate is 0.7972090729783037
+Station ID8, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID9, currentState is online, is not plus station , Number of free slots: 4, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.5999408284023668
+user ls, credit: 0.0, TotalRentNumber: 1, TotalDuration: 707mins, TotalCharge: 12.0ву
 
+
+In descending order...Station ID: 1, Station ID: 7, Station ID: 0, Station ID: 2, Station ID: 3, Station ID: 4, Station ID: 5, Station ID: 6, Station ID: 8, Station ID: 9, 
+
+In ascending order...Station ID: 0, Station ID: 7, Station ID: 2, Station ID: 3, Station ID: 4, Station ID: 5, Station ID: 6, Station ID: 8, Station ID: 1, Station ID: 9, 
 

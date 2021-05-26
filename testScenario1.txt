@@ -3,3 +3,5 @@ addUser ls null Paris
 rentbike Paris 1 1
 returnbike Paris 1 7 2021-5-27/12:00:00
 display Paris
+sortStation Paris MostUsed
+sortStation Paris LeastOccupied

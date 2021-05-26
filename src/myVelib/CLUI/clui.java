@@ -144,6 +144,20 @@ public class clui {
         	returnvalue+=v.displaySystem();
 		}
 		else if(command[0].equals("sortStation")) {
+			VelibSystem v=SystemList.get(command[1]);
+			if (command[2].equals("MostUsed")) {
+				SortPolicy p=new MostUsed();
+				returnvalue+="In descending order...\n";
+				returnvalue+=v.sortStation(p);
+			}
+			else if (command[2].equals("LeastOccupied")) {
+				SortPolicy p=new LeastOccupied();
+				returnvalue+="In ascending order...\n";
+				returnvalue+=v.sortStation(p);
+			}
+			else {
+				System.err.println("Unknown SortPolicy,please enter a valid one...");
+			}
 			
 		}
 //		if save, SystemList will be write be into VelibSystems.ser

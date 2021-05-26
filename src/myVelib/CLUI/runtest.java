@@ -16,7 +16,7 @@ public class runtest {
 		VelibSystem v=Inifile.readIniFile();
 		return v;
 	}
-	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, IOException, NoBikeToReturnException, RentMoreThanOneBikeException, ParseException{
+	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, IOException, NoBikeToReturnException, RentMoreThanOneBikeException, ParseException, ClassNotFoundException{
 		String returnvalue="";
 		if(command[0].equals("setup")) {
 			VelibSystem v=SystemList.get(command[1]);
@@ -50,20 +50,15 @@ public class runtest {
 				SystemList.put(command[1], v);
 			}
 		}
+//		else if (command[0].equals("runtest")) {
+//			runtest(command[1]);
+//			System.out.println("please refresh the workspace to checkout the output....");
+//		}
 		else if(command[0].equals("addUser")) {
 			String username=command[1];
 			VelibSystem v=SystemList.get(command[3]);
-			if(command[2].equals("Vlibre")) {
-				Vlibre card=new Vlibre();
-				returnvalue+=v.addUser(username, card);
-			}
-			else if(command[2].equals("Vmax")) {
-				Vmax card=new Vmax();
-				returnvalue+=v.addUser(username, card);
-			}
-			else if(command[2].equals("null")){
-				returnvalue+=v.addUser(username, null);
-			}
+			RegistrationCard card=CardFactory.createcard(command[2]);
+			returnvalue+=v.addUser(username, card);
 		}
 		else if(command[0].equals("online")) {
 			VelibSystem v=SystemList.get(command[1]);
@@ -97,13 +92,56 @@ public class runtest {
 				System.err.println("Caught NumberFormatException: "+e.getMessage());
 			}
 		}
+		else if (command[0].equals("displayStation")) {
+			VelibSystem v=SystemList.get(command[1]);
+			returnvalue+=v.displayStation(Integer.parseInt(command[2]));
+		}
+		else if (command[0].equals("displayUser")) {
+			VelibSystem v=SystemList.get(command[1]);
+			returnvalue+=v.displayUser(Integer.parseInt(command[2]));
+		}
+        else if (command[0].equals("display")) {
+        	VelibSystem v=SystemList.get(command[1]);
+        	returnvalue+=v.displaySystem();
+		}
 		else if(command[0].equals("sortStation")) {
+			VelibSystem v=SystemList.get(command[1]);
+			if (command[2].equals("MostUsed")) {
+				SortPolicy p=new MostUsed();
+				returnvalue+="In descending order...\n";
+				returnvalue+=v.sortStation(p);
+			}
+			else if (command[2].equals("LeastOccupied")) {
+				SortPolicy p=new LeastOccupied();
+				returnvalue+="In ascending order...\n";
+				returnvalue+=v.sortStation(p);
+			}
+			else {
+				System.err.println("Unknown SortPolicy,please enter a valid one...");
+			}
 			
 		}
 //		if save, SystemList will be write be into VelibSystems.ser
 		else if(command[0].equals("save")) {
 			save();
 		}
+//		else if(command[0].equals("quit")) {
+//			System.out.println("You're about to close the system.Do remember to save your work. All non-saved modifications will be lost.\nAre you sure you want to proceed? (yes/no)");
+//			String answer;
+//			while(true) {
+//				answer = getCommand("Quit ? ");
+//				if(answer.isBlank()) {
+//					System.err.println("Please enter a valid command (yes/no)");
+//				}else if(answer.equals("yes")) {
+//					System.out.println("system closed");
+//					System.exit(0);
+//				}else if(answer.equals("no")) {
+//						break;
+//				}else {
+//					System.err.println("Please enter a valid command (yes/no).");
+//				}
+//			}
+//		}
 		else {
 			System.err.println("Command "+command[0]+" unknown,please enter a valid one!");
 			throw new UnknownCommandException(command[0]);
