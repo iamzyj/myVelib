@@ -93,7 +93,7 @@ public TreeMap<Double,Station> filter(TreeMap<Double,Station> stations, int flag
 	
 	
 	public HashMap<String,Station> Planning(HashMap<Integer,Station> stations, Coordinates start, Coordinates end){
-		int flag;//flag==0 : normal   flag==1 avoid plus   flag==2 prefer plus  flag==3 balance;
+		int flag=0;//flag==0 : normal   flag==1 avoid plus   flag==2 prefer plus  flag==3 balance;
 		System.out.println("Would you like to avoid plus station? (yes/no):");
 		
 		System.out.println("Would you like to prefer plus station? (yes/no):");
@@ -101,6 +101,12 @@ public TreeMap<Double,Station> filter(TreeMap<Double,Station> stations, int flag
 		TreeMap<Double, Station> sortedEnd =	Sort(stations, end);
 		
 		HashMap<String,Station> StartEnd = new HashMap<>();
+		
+		sortedStart= filter(sortedStart,flag);
+		sortedEnd= filter(sortedEnd,flag);
+		
+		
+		
 		
 		for (Double key : sortedStart.keySet()) {
 			
