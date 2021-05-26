@@ -116,7 +116,7 @@ public class VelibSystem implements java.io.Serializable{
 		u.setUsername(username);
 		u.setCard(card);
 		getUsers().put(id,u);
-		return "user "+username+" is added..."+(card==null?"who has not a card yet":"whose cardtype is "+card.name);
+		return "user "+username+" is added..."+(card==null?"who has not a card yet":"whose cardtype is "+card.getName());
 	}
 	public String offline(int stationID) throws InvalidIDException {
 		Station s=getStations().get(stationID);

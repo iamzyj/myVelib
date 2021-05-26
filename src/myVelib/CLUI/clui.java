@@ -13,10 +13,46 @@ import java.text.ParseException;
 //ser文件可用来存取，并且下一次可以用来读取
 public class clui {
 	public static Map<String, VelibSystem> SystemList;
-	public static void main(String args) {
-		
+	public static void main(String[] args) throws ClassNotFoundException, IOException, ParseException {
+		String[] arguments;
+		String command;
+		SystemList = new HashMap<String, VelibSystem>();
+		VelibSystem v=initialization();
+//		default name Paris;
+		SystemList.put("Paris", v);
+		while(true) {
+			try {
+				command = getCommand("Waiting for next command: ");
+				if(command.isBlank()) {
+					System.err.println("Please enter a valid command");
+				}else {
+					arguments = command.split("[ ]");
+					String str;
+					str=parseCommand(arguments);
+					System.out.println(str);
+				}
+			} catch (Exception e) {
+			}
+		}
 	}
-	public static VelibSystem loadingConfiguration() throws IOException, ClassNotFoundException, ParseException {
+	@SuppressWarnings("resource")
+	public static String getCommand(String message){
+		Scanner input = new Scanner(System.in);
+		try {
+			System.out.print(message);
+			if(input.hasNextLine()) {
+				String com = input.nextLine();
+				return com;
+			}else {
+				input.next();
+				return null;
+			}
+		} catch (Exception e) {		
+		}
+		return null;
+			
+	}
+	public static VelibSystem initialization() throws IOException, ClassNotFoundException, ParseException {
 		Inifile.writeIniFile();
 		VelibSystem v=Inifile.readIniFile();
 		return v;
@@ -69,7 +105,7 @@ public class clui {
 				Vmax card=new Vmax();
 				returnvalue+=v.addUser(username, card);
 			}
-			else if(command[3].equals("null")){
+			else if(command[2].equals("null")){
 				returnvalue+=v.addUser(username, null);
 			}
 		}
@@ -112,6 +148,23 @@ public class clui {
 		else if(command[0].equals("save")) {
 			save();
 		}
+		else if(command[0].equals("quit")) {
+			System.out.println("You're about to close the system.Do remember to save your work. All non-saved modifications will be lost.\nAre you sure you want to proceed? (yes/no)");
+			String answer;
+			while(true) {
+				answer = getCommand("Quit ? ");
+				if(answer.isBlank()) {
+					System.err.println("Please enter a valid command (yes/no)");
+				}else if(answer.equals("yes")) {
+					System.out.println("system closed");
+					System.exit(0);
+				}else if(answer.equals("no")) {
+						break;
+				}else {
+					System.err.println("Please enter a valid command (yes/no).");
+				}
+			}
+		}
 		else {
 			System.err.println("Command "+command[0]+" unknown,please enter a valid one!");
 			throw new UnknownCommandException(command[0]);
@@ -119,8 +172,8 @@ public class clui {
 		return returnvalue;
 	}
 	public static void runtest(String filename) throws IOException, ClassNotFoundException, UnknownCommandException, ParseException{
-		  SystemList=new HashMap<String,VelibSystem>();
-		  File f=new File("VelibSystems.ser");
+		      SystemList=new HashMap<String,VelibSystem>();
+		  	  File f=new File("VelibSystems.ser");
 		      String test=readCommand.readTextFile(filename);
 		      String [] commands=test.split("[\n]");
 		   	  String output="output.txt";
@@ -132,7 +185,7 @@ public class clui {
 				  SystemList=loadSystems();
 			  }
 			  else {
-				  VelibSystem paris=loadingConfiguration();
+				  VelibSystem paris=initialization();
 				  SystemList.put("Paris",paris);  
 			  }
 			try{ 

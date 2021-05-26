@@ -63,7 +63,7 @@ public class runtest {
 				Vmax card=new Vmax();
 				returnvalue+=v.addUser(username, card);
 			}
-			else if(command[3].equals("null")){
+			else if(command[2].equals("null")){
 				returnvalue+=v.addUser(username, null);
 			}
 		}
