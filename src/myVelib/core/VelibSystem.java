@@ -39,7 +39,7 @@ public class VelibSystem implements java.io.Serializable{
 		v.rentbike(1, 1);
 		String p=v.returnbike(1, 7, "2021-06-16/19:00:00");
 		m=v.calAllStationBalance();
-		System.out.println(m.get(1));
+		System.out.println(m.get(0));
 		
 	}
 	public void setPlusStation() {
@@ -72,7 +72,7 @@ public class VelibSystem implements java.io.Serializable{
 			id+=1;
 		}
 	}
-	public void distributeBikes(int nBikes) {
+	public void distributeBikes(int nBikes) throws ParseException {
 		int nMech=(int)(nBikes*0.7);
 		int nElec=nBikes-nMech;
 		int id=0;
@@ -81,7 +81,7 @@ public class VelibSystem implements java.io.Serializable{
 				Station s=getStations().get(key);
 				if (nMech>0) {
 				Mechanical m=new Mechanical(id);
-				s.addBicycle(m);
+				s.setupBicycle(m);
 				getBicycles().put(id,m);
 				id+=1;
 				nMech-=1;
@@ -93,7 +93,7 @@ public class VelibSystem implements java.io.Serializable{
 				Station s=getStations().get(key);
 				if (nElec>0) {
 				Electrical e=new Electrical(id);
-				s.addBicycle(e);
+				s.setupBicycle(e);
 				getBicycles().put(id,e);
 				id+=1;
 				nElec-=1;
@@ -178,6 +178,7 @@ public class VelibSystem implements java.io.Serializable{
 			u.setCredits(u.getCredits()+5);
 		}
 		sess.setFinished(true);
+		s.addBicycle(sess);
 		s.returnNum+=1;
 		}
 		return "user "+u.getUsername()+" returns a bike at "+"Station ID: "+stationID+". Time is "+str+"\n"+"the total price is "+sess.getPrice();
