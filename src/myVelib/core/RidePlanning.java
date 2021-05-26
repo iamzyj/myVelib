@@ -8,7 +8,7 @@ public class RidePlanning {
 	
 	public TreeMap<Double,Station> Sort(HashMap<Integer,Station> stations, Coordinates start){
 		
-		HashMap<Double, Station> sortStation = new HashMap<>();
+		HashMap<Double, Station> sortStation = new HashMap<Double,Station>();
 		
 
 		for (Integer key : stations.keySet()) {
@@ -18,7 +18,7 @@ public class RidePlanning {
 				sortStation.put(tempStation.Co.getDistance(start), tempStation);
 		}
 		
-		TreeMap<Double, Station> sortedMap = new TreeMap<>(sortStation);
+		TreeMap<Double, Station> sortedMap = new TreeMap<Double,Station>(sortStation);
 		
 		
 		
@@ -32,7 +32,7 @@ public class RidePlanning {
 @SuppressWarnings("unused")
 public TreeMap<Double,Station> filter(TreeMap<Double,Station> stations, int flag){
 		
-		HashMap<Double, Station> sortStation = new HashMap<>();
+		HashMap<Double, Station> sortStation = new HashMap<Double,Station>();
 		
 		
 		if (flag==0)
@@ -100,7 +100,7 @@ public TreeMap<Double,Station> filter(TreeMap<Double,Station> stations, int flag
 		TreeMap<Double, Station> sortedStart =  Sort(stations, start);
 		TreeMap<Double, Station> sortedEnd =	Sort(stations, end);
 		
-		HashMap<String,Station> StartEnd = new HashMap<>();
+		HashMap<String,Station> StartEnd = new HashMap<String,Station>();
 		
 		sortedStart= filter(sortedStart,flag);
 		sortedEnd= filter(sortedEnd,flag);
