@@ -25,6 +25,11 @@ public class Coordinates implements java.io.Serializable{
 		this.y=4*Math.random();
 	}
 	
+	public double getDistance(Coordinates co) {
+		
+		
+		return Math.sqrt((this.x-co.getX())*(this.x-co.getX())+(this.y-co.getY())*(this.y-co.getY()));
+	}
 
 	public Coordinates(double x, double y) {
 		super();
@@ -34,5 +39,8 @@ public class Coordinates implements java.io.Serializable{
 	public static void main(String[] args) {
 		Coordinates c=new Coordinates();
 		System.out.println(c.getX());
+		Coordinates d=new Coordinates();
+		System.out.println(d.getX());
+		System.out.println(c.getDistance(d));
 	}
 }
