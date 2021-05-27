@@ -3,7 +3,7 @@ package myVelib.core;
 import java.util.HashMap;
 import java.util.TreeMap;
 
-public class PreserveUniformity implements SortStrategy{
+public class PreserveUniformity implements RideSortStrategy{
 
 	@Override
 	public TreeMap<Double, Station> SortStart(HashMap<Integer, Station> stations, Coordinates start) {

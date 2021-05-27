@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 public class RidePlanning {
 	
-	SortStrategy strategy;
+	RideSortStrategy strategy;
 	HashMap<Integer, Station> stations;
 	TreeMap<Double, Station> SortStart;
 	TreeMap<Double, Station> SortEnd;
@@ -14,7 +14,7 @@ public class RidePlanning {
 	Coordinates end;
 	
 	
-	public RidePlanning(SortStrategy strategy, HashMap<Integer, Station> stations, Coordinates start, Coordinates end) {
+	public RidePlanning(RideSortStrategy strategy, HashMap<Integer, Station> stations, Coordinates start, Coordinates end) {
 		super();
 		this.strategy = strategy;
 		this.stations = stations;
