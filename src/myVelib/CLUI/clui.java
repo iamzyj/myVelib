@@ -160,6 +160,23 @@ public class clui {
 			}
 			
 		}
+		else if(command[0].equals("rideplan")) {
+			VelibSystem v=SystemList.get(command[1]);
+			if (command[2].equals("AvoidPlus")) {
+				RideSortStrategy p=new AvoidPlus();
+				returnvalue+="In descending order...\n";
+				//returnvalue+=v.sortStation(p);
+			}
+			else if (command[2].equals("PreferPlus")) {
+				RideSortStrategy p=new PreferPlus();
+				returnvalue+="In ascending order...\n";
+				//returnvalue+=v.sortStation(p);
+			}
+			else {
+				System.err.println("Unknown SortPolicy,please enter a valid one...");
+			}
+			
+		}
 //		if save, SystemList will be write be into VelibSystems.ser
 		else if(command[0].equals("save")) {
 			save();
