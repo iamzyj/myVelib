@@ -162,16 +162,28 @@ public class clui {
 		}
 		else if(command[0].equals("rideplan")) {
 			VelibSystem v=SystemList.get(command[1]);
+			Double x1=Double.parseDouble(command[3]);
+			Double y1=Double.parseDouble(command[4]);
+			Double x2=Double.parseDouble(command[5]);
+			Double y2=Double.parseDouble(command[6]);
+			Coordinates start = new Coordinates(x1,y1);
+			Coordinates end = new Coordinates(x2,y2);
+			returnvalue+="In descending distance...\n";
 			if (command[2].equals("AvoidPlus")) {
 				RideSortStrategy p=new AvoidPlus();
-				returnvalue+="In descending order...\n";
+				returnvalue+=v.rideplan(p, start, end);
 				//returnvalue+=v.sortStation(p);
 			}
 			else if (command[2].equals("PreferPlus")) {
 				RideSortStrategy p=new PreferPlus();
-				returnvalue+="In ascending order...\n";
+				returnvalue+=v.rideplan(p, start, end);
 				//returnvalue+=v.sortStation(p);
-			}
+			}// rideplan paris AvoidPlus 1,0 1,0 2,0 2,0
+			else if (command[2].equals("PreserveUniformity")) {
+				RideSortStrategy p=new PreserveUniformity();
+				returnvalue+=v.rideplan(p, start, end);
+				//returnvalue+=v.sortStation(p);
+			}// 
 			else {
 				System.err.println("Unknown SortPolicy,please enter a valid one...");
 			}

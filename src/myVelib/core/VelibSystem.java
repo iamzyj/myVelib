@@ -254,18 +254,11 @@ public class VelibSystem implements java.io.Serializable{
 		return str;
 	}
 	
-	public String rideplan(RideSortStrategy p) throws ParseException {
+	public String rideplan(RideSortStrategy p, Coordinates start, Coordinates end) throws ParseException {
 		String str="";
-		calAllStationBalance();
-		ArrayList<Station> as=new ArrayList<Station>();
-		for(Integer key:getStations().keySet()) {
-			Station s=getStations().get(key);
-			as.add(s);
-		}
-		p.sort(as);
-		for (Station s:as) {
-			str+="Station ID: "+s.ID+", ";
-		}
+		RidePlanning plan = new RidePlanning(p, getStations(),start,end);
+		plan.sortStation();
+		str=plan.toString();
 		return str;
 	}
 	
