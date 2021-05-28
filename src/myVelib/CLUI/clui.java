@@ -193,6 +193,15 @@ public class clui {
 		else if(command[0].equals("save")) {
 			save();
 		}
+		else if(command[0].equals("load")) {
+			File f=new File("VelibSystems.ser");
+			if(f.exists()) {
+				SystemList=loadSystems();
+			}
+			else {
+				System.err.println("Ser File does not exist....");
+			}
+		}
 		else if(command[0].equals("quit")) {
 			System.out.println("You're about to close the system.Do remember to save your work. All non-saved modifications will be lost.\nAre you sure you want to proceed? (yes/no)");
 			String answer;
