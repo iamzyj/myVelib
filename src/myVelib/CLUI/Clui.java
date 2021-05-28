@@ -9,7 +9,7 @@ import java.io.*;
 import java.text.ParseException;
 //System其实还有面积的设置，应该在coordinates 那里修改
 //ser文件可用来存取，并且下一次可以用来读取
-public class clui {
+public class Clui {
 	public static Map<String, VelibSystem> SystemList;
 	public static void main(String[] args) throws ClassNotFoundException, IOException, ParseException {
 		String[] arguments;
