@@ -35,16 +35,17 @@ public class RidePlanning {
 		String str = "Start:";//用于存放遍历出来的字符串
         Iterator<Double>  iterator = this.SortStart.keySet().iterator();
         while (iterator.hasNext()) {
-            //2、拼接字符串
-        	str +=iterator.toString()+":";
-            str += this.SortStart.get(iterator.next()).toString()+",";
+        	Double temp=iterator.next();
+            str += this.SortStart.get(temp).toString()+",";
+            str +="Distance: "+temp+";";
         }
         str+="\nEnd:";
         Iterator<Double>  iterator1 = this.SortEnd.keySet().iterator();
         while (iterator1.hasNext()) {
             //2、拼接字符串
-        	str +=iterator1.toString()+":";
-            str += this.SortEnd.get(iterator1.next()).toString()+",";
+        	Double temp=iterator1.next();
+            str += this.SortEnd.get(temp).toString()+",";
+            str +="Distance: "+temp+";";
         }
         str+="\n";
 		return str;

@@ -159,6 +159,10 @@ public class Station implements java.io.Serializable{
 		occupationRate=balance;
 		return balance;
 	}
+	@Override
+	public String toString() {
+		return "Station: ID "+ID;
+	}
 
 }
 

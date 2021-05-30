@@ -2,25 +2,32 @@ Setting up System Paris number of stations is 10, number of slots is 10, number 
 
 user ls is added...who has not a card yet
 
-user ls rented a bike at Station ID: 1. Time is 2021-05-27/00:12:45
+user ls rented a bike at Station ID: 1. Time is 2021-05-30/23:31:33
 
-user ls returns a bike at Station ID: 7. Time is 2021-5-27/12:00:00
-the total price is 12.0
+user ls returns a bike at Station ID: 7. Time is 2021-5-31/12:00:00
+the total price is 13.0
 
-Station ID0, currentState is online, is not plus station , Number of free slots: 2, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.7999211045364891
-Station ID1, currentState is online, is plus station:, Number of free slots: 4, TotalRentNum is 1, TotalReturnNum is 10, OccupationRate is 0.601258382642998
-Station ID2, currentState is online, is plus station:, Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID3, currentState is online, is plus station:, Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID1, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 1, TotalReturnNum is 10, OccupationRate is 0.7125285996055226
+Station ID2, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID3, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
 Station ID4, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID5, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID6, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID7, currentState is online, is not plus station , Number of free slots: 2, TotalRentNum is 0, TotalReturnNum is 01, OccupationRate is 0.7972090729783037
-Station ID8, currentState is online, is not plus station , Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
-Station ID9, currentState is online, is not plus station , Number of free slots: 4, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.5999408284023668
-user ls, credit: 0.0, TotalRentNumber: 1, TotalDuration: 707mins, TotalCharge: 12.0ву
+Station ID5, currentState is online, is plus station:, Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID6, currentState is online, is plus station:, Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID7, currentState is online, is not plus station , Number of free slots: 2, TotalRentNum is 0, TotalReturnNum is 01, OccupationRate is 0.7858481262327416
+Station ID8, currentState is online, is plus station:, Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID9, currentState is online, is plus station:, Number of free slots: 3, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.699930966469428
+Station ID10, currentState is online, is not plus station , Number of free slots: 4, TotalRentNum is 0, TotalReturnNum is 00, OccupationRate is 0.5999408284023668
+user ls, credit: 0.0, TotalRentNumber: 1, TotalDuration: 748mins, TotalCharge: 13.0ву
 
 
-In descending order...Station ID: 1, Station ID: 7, Station ID: 0, Station ID: 2, Station ID: 3, Station ID: 4, Station ID: 5, Station ID: 6, Station ID: 8, Station ID: 9, 
+Used Frequency in descending order...
+Station ID: 1, Station ID: 7, Station ID: 2, Station ID: 3, Station ID: 4, Station ID: 5, Station ID: 6, Station ID: 8, Station ID: 9, Station ID: 10, 
 
-In ascending order...Station ID: 0, Station ID: 7, Station ID: 2, Station ID: 3, Station ID: 4, Station ID: 5, Station ID: 6, Station ID: 8, Station ID: 1, Station ID: 9, 
+Occupied Rate in ascending order...
+Station ID: 7, Station ID: 1, Station ID: 2, Station ID: 3, Station ID: 4, Station ID: 5, Station ID: 6, Station ID: 8, Station ID: 9, Station ID: 10, 
+
+In ascending distance...
+Start:Station: ID 1,Distance: 1.1343093200491363;Station: ID 7,Distance: 1.2836700780466186;Station: ID 10,Distance: 1.4046742477282887;Station: ID 2,Distance: 1.4901233882947662;Station: ID 6,Distance: 1.5467173395989184;Station: ID 5,Distance: 1.7804122708757115;Station: ID 8,Distance: 1.814131055640729;Station: ID 9,Distance: 2.0703640674479407;Station: ID 3,Distance: 2.6985263756331492;Station: ID 4,Distance: 2.912678528186968;
+End:Station: ID 3,Distance: 0.3405226473670967;Station: ID 8,Distance: 0.7104783597212422;Station: ID 9,Distance: 0.9680932104565444;Station: ID 2,Distance: 1.4424678936473712;Station: ID 1,Distance: 1.589893797765412;Station: ID 7,Distance: 1.772501043961538;Station: ID 6,Distance: 2.1718452334750675;Station: ID 10,Distance: 2.6732898753008363;Station: ID 4,Distance: 3.2905913468539043;Station: ID 5,Distance: 3.6992334169827985;
+
 
