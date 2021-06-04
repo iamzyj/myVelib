@@ -210,7 +210,7 @@ public class Station implements java.io.Serializable{
 		for(Slot s:slots) {
 			totalFreeTime+=s.freetime;
 		}
-//		两整数相除会强制取整
+
 		double balance=1.0-((double)(totalFreeTime)/(double)(timeInterval*slot_num));
 		occupationRate=balance;
 		return balance;

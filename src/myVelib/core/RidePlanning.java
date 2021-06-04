@@ -45,7 +45,7 @@ public class RidePlanning {
 	 */
 	@Override
 	public String toString() {
-		String str = "Start:";//用于存放遍历出来的字符串
+		String str = "Start:";
         Iterator<Double>  iterator = this.SortStart.keySet().iterator();
         while (iterator.hasNext()) {
         	Double temp=iterator.next();
@@ -55,7 +55,7 @@ public class RidePlanning {
         str+="\nEnd:";
         Iterator<Double>  iterator1 = this.SortEnd.keySet().iterator();
         while (iterator1.hasNext()) {
-            //2、拼接字符串
+            
         	Double temp=iterator1.next();
             str += this.SortEnd.get(temp).toString()+",";
             str +="Distance: "+temp+";";

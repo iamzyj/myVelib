@@ -8,8 +8,7 @@ import myVelib.Exceptions.*;
 
 import java.text.ParseException;
 import java.util.*;
-//可以指定一个或者随机一个大数，再加上原有从0开始的ID,不过这样取ID的时候要注意
-//station要加上rental records 和returning records 为了之后展示数据.
+
 public class VelibSystem implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858953073456L;
 	private HashMap<Integer,Bicycle> bicycles;
@@ -143,7 +142,7 @@ public class VelibSystem implements java.io.Serializable{
 		this.setPlusStation();
 		return returnvalue;
 	}
-// cardtype用字符串会更好些，不然没法直接解析CLUI参数
+
 	/**
 	 * Add the user to a system, called by CLUI
 	 * @param username name of user
