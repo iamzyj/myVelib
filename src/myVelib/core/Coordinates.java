@@ -36,6 +36,10 @@ public class Coordinates implements java.io.Serializable{
 		this.x = x;
 		this.y = y;
 	}
+	@Override
+	public String toString() {
+		return "("+this.getX()+","+this.getY()+")";
+	}
 	public static void main(String[] args) {
 		Coordinates c=new Coordinates();
 		System.out.println(c.getX());

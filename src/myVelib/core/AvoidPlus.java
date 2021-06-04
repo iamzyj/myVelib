@@ -14,8 +14,9 @@ public class AvoidPlus implements RideSortStrategy{
 		for (Integer key : stations.keySet()) {
 			
 			Station tempStation=stations.get(key);
-			if (tempStation.hasBikes==true && tempStation.isPlus==false)
+			if (tempStation.hasBikes()==true && tempStation.isPlus==false) {
 				sortStation.put(tempStation.Co.getDistance(start), tempStation);
+			}
 		}
 		
 		TreeMap<Double, Station> sortedMap = new TreeMap<Double,Station>(sortStation);
@@ -34,8 +35,9 @@ public class AvoidPlus implements RideSortStrategy{
 		for (Integer key : stations.keySet()) {
 			
 			Station tempStation=stations.get(key);
-			if (tempStation.countFree()!=0 && tempStation.isPlus==false)
+			if (tempStation.countFree()!=0 && tempStation.isPlus==false) {
 				sortStation.put(tempStation.Co.getDistance(end), tempStation);
+			}
 		}
 		
 		TreeMap<Double, Station> sortedMap = new TreeMap<Double,Station>(sortStation);

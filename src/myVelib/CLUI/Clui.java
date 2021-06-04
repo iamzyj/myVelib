@@ -9,7 +9,7 @@ import java.io.*;
 import java.text.ParseException;
 //System其实还有面积的设置，应该在coordinates 那里修改
 //ser文件可用来存取，并且下一次可以用来读取
-public class clui {
+public class Clui {
 	public static Map<String, VelibSystem> SystemList;
 	public static void main(String[] args) throws ClassNotFoundException, IOException, ParseException {
 		String[] arguments;
@@ -57,7 +57,7 @@ public class clui {
 	}
 	public static String parseCommand(String[] command) throws UnknownCommandException, InvalidIDException, VacancyException, NoneParkingSlotException, EndPriorToStartException, IOException, NoBikeToReturnException, RentMoreThanOneBikeException, ParseException, ClassNotFoundException{
 		String returnvalue="";
-		if(command[0].equals("setup")) {
+		if(command[0].equalsIgnoreCase("setup")) {
 			VelibSystem v=SystemList.get(command[1]);
 			if(v!=null) {
 				if (command.length<=2) {
@@ -89,17 +89,17 @@ public class clui {
 				SystemList.put(command[1], v);
 			}
 		}
-		else if (command[0].equals("runtest")) {
+		else if (command[0].equalsIgnoreCase("runtest")) {
 			runtest(command[1]);
 			System.out.println("please refresh the workspace to checkout the output....");
 		}
-		else if(command[0].equals("addUser")) {
+		else if(command[0].equalsIgnoreCase("addUser")) {
 			String username=command[1];
 			VelibSystem v=SystemList.get(command[3]);
 			RegistrationCard card=CardFactory.createcard(command[2]);
 			returnvalue+=v.addUser(username, card);
 		}
-		else if(command[0].equals("online")) {
+		else if(command[0].equalsIgnoreCase("online")) {
 			VelibSystem v=SystemList.get(command[1]);
 			try {
 			returnvalue+=v.online(Integer.parseInt(command[2]));
@@ -107,7 +107,7 @@ public class clui {
 				System.err.println("Caught NumberFormatException: "+e.getMessage());
 			}
 		}
-		else if(command[0].equals("offline")) {
+		else if(command[0].equalsIgnoreCase("offline")) {
 			VelibSystem v=SystemList.get(command[1]);
 			try {
 			returnvalue+=v.offline(Integer.parseInt(command[2]));
@@ -115,7 +115,7 @@ public class clui {
 				System.err.println("Caught NumberFormatException: "+e.getMessage());
 			}
 		}
-		else if(command[0].equals("rentbike")) {
+		else if(command[0].equalsIgnoreCase("rentbike")) {
 			VelibSystem v=SystemList.get(command[1]);
 			try {
 			returnvalue+=v.rentbike(Integer.parseInt(command[2]), Integer.parseInt(command[3]));
@@ -123,7 +123,7 @@ public class clui {
 				System.err.println("Caught NumberFormatException: "+e.getMessage());
 			}
 		}
-		else if(command[0].equals("returnbike")) {
+		else if(command[0].equalsIgnoreCase("returnbike")) {
 			VelibSystem v=SystemList.get(command[1]);
 			try {
 				returnvalue+=v.returnbike(Integer.parseInt(command[2]), Integer.parseInt(command[3]),command[4]);
@@ -131,28 +131,28 @@ public class clui {
 				System.err.println("Caught NumberFormatException: "+e.getMessage());
 			}
 		}
-		else if (command[0].equals("displayStation")) {
+		else if (command[0].equalsIgnoreCase("displayStation")) {
 			VelibSystem v=SystemList.get(command[1]);
 			returnvalue+=v.displayStation(Integer.parseInt(command[2]));
 		}
-		else if (command[0].equals("displayUser")) {
+		else if (command[0].equalsIgnoreCase("displayUser")) {
 			VelibSystem v=SystemList.get(command[1]);
 			returnvalue+=v.displayUser(Integer.parseInt(command[2]));
 		}
-        else if (command[0].equals("display")) {
+        else if (command[0].equalsIgnoreCase("display")) {
         	VelibSystem v=SystemList.get(command[1]);
         	returnvalue+=v.displaySystem();
 		}
-		else if(command[0].equals("sortStation")) {
+		else if(command[0].equalsIgnoreCase("sortStation")) {
 			VelibSystem v=SystemList.get(command[1]);
-			if (command[2].equals("MostUsed")) {
+			if (command[2].equalsIgnoreCase("MostUsed")) {
 				SortPolicy p=new MostUsed();
-				returnvalue+="In descending order...\n";
+				returnvalue+="Used Frequency in descending order...\n";
 				returnvalue+=v.sortStation(p);
 			}
-			else if (command[2].equals("LeastOccupied")) {
+			else if (command[2].equalsIgnoreCase("LeastOccupied")) {
 				SortPolicy p=new LeastOccupied();
-				returnvalue+="In ascending order...\n";
+				returnvalue+="Occupied Rate in ascending order...\n";
 				returnvalue+=v.sortStation(p);
 			}
 			else {
@@ -160,7 +160,7 @@ public class clui {
 			}
 			
 		}
-		else if(command[0].equals("rideplan")) {
+		else if(command[0].equalsIgnoreCase("rideplan")) {
 			VelibSystem v=SystemList.get(command[1]);
 			Double x1=Double.parseDouble(command[3]);
 			Double y1=Double.parseDouble(command[4]);
@@ -168,42 +168,56 @@ public class clui {
 			Double y2=Double.parseDouble(command[6]);
 			Coordinates start = new Coordinates(x1,y1);
 			Coordinates end = new Coordinates(x2,y2);
-			returnvalue+="In descending distance...\n";
-			if (command[2].equals("AvoidPlus")) {
+			returnvalue+="Ridepan In ascending distance...\n";
+			if (command[2].equalsIgnoreCase("AvoidPlus")) {
 				RideSortStrategy p=new AvoidPlus();
 				returnvalue+=v.rideplan(p, start, end);
 				//returnvalue+=v.sortStation(p);
 			}
-			else if (command[2].equals("PreferPlus")) {
+			else if (command[2].equalsIgnoreCase("PreferPlus")) {
 				RideSortStrategy p=new PreferPlus();
 				returnvalue+=v.rideplan(p, start, end);
 				//returnvalue+=v.sortStation(p);
 			}// rideplan paris AvoidPlus 1,0 1,0 2,0 2,0
-			else if (command[2].equals("PreserveUniformity")) {
+			else if (command[2].equalsIgnoreCase("PreserveUniformity")) {
 				RideSortStrategy p=new PreserveUniformity();
 				returnvalue+=v.rideplan(p, start, end);
 				//returnvalue+=v.sortStation(p);
 			}// 
+			else if (command[2].equalsIgnoreCase("Default")) {
+				RideSortStrategy p=new DefaultSort();
+				returnvalue+=v.rideplan(p, start, end);
+				//returnvalue+=v.sortStation(p);
+			}//
 			else {
 				System.err.println("Unknown SortPolicy,please enter a valid one...");
 			}
 			
 		}
 //		if save, SystemList will be write be into VelibSystems.ser
-		else if(command[0].equals("save")) {
+		else if(command[0].equalsIgnoreCase("save")) {
 			save();
 		}
-		else if(command[0].equals("quit")) {
+		else if(command[0].equalsIgnoreCase("load")) {
+			File f=new File("VelibSystems.ser");
+			if(f.exists()) {
+				SystemList=loadSystems();
+			}
+			else {
+				System.err.println("Ser File does not exist....");
+			}
+		}
+		else if(command[0].equalsIgnoreCase("quit")) {
 			System.out.println("You're about to close the system.Do remember to save your work. All non-saved modifications will be lost.\nAre you sure you want to proceed? (yes/no)");
 			String answer;
 			while(true) {
 				answer = getCommand("Quit ? ");
 				if(answer.isBlank()) {
 					System.err.println("Please enter a valid command (yes/no)");
-				}else if(answer.equals("yes")) {
+				}else if(answer.equalsIgnoreCase("yes")) {
 					System.out.println("system closed");
 					System.exit(0);
-				}else if(answer.equals("no")) {
+				}else if(answer.equalsIgnoreCase("no")) {
 						break;
 				}else {
 					System.err.println("Please enter a valid command (yes/no).");

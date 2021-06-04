@@ -14,8 +14,9 @@ public class PreserveUniformity implements RideSortStrategy{
 		for (Integer key : stations.keySet()) {
 			
 			Station tempStation=stations.get(key);
-			if (tempStation.hasBikes==true)
+			if (tempStation.hasBikes()==true) {
 				sortStation.put(tempStation.Co.getDistance(start), tempStation);
+			}
 		}
 		
 		TreeMap<Double, Station> sortedMap = new TreeMap<Double,Station>(sortStation);
@@ -33,12 +34,14 @@ public class PreserveUniformity implements RideSortStrategy{
 		{
 			if (key!=firstkey && key<=1.05*firstkey ) {
 				Station tempStation=sortedMap.get(key);
-				if ((tempStation.slot_num-tempStation.countFree())>(firstStation.slot_num-firstStation.countFree()))
+				if ((tempStation.slot_num-tempStation.countFree())>(firstStation.slot_num-firstStation.countFree())) {
 					sortedMap1.put(key, tempStation);
+				}
 			}
 		}
-		if (sortedMap1.size()==0)
+		if (sortedMap1.size()==0) {
 			return sortedMap;
+		}
 		return sortedMap1;
 		
 	}
@@ -52,8 +55,9 @@ public class PreserveUniformity implements RideSortStrategy{
 		for (Integer key : stations.keySet()) {
 			
 			Station tempStation=stations.get(key);
-			if (tempStation.countFree()!=0)
+			if (tempStation.countFree()!=0) {
 				sortStation.put(tempStation.Co.getDistance(end), tempStation);
+			}
 		}
 		
 		TreeMap<Double, Station> sortedMap = new TreeMap<Double,Station>(sortStation);
@@ -71,8 +75,9 @@ public class PreserveUniformity implements RideSortStrategy{
 		{
 			if (key!=firstkey && key<=1.05*firstkey ) {
 				Station tempStation=sortedMap.get(key);
-				if ((tempStation.countFree())>(firstStation.countFree()))
+				if ((tempStation.countFree())>(firstStation.countFree())) {
 					sortedMap1.put(key, tempStation);
+				}
 			}
 		}
 		if (sortedMap1.size()==0)

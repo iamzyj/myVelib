@@ -65,7 +65,7 @@ public class VelibSystem implements java.io.Serializable{
 		while(c.size()<nStations) {
 			c.add(new Coordinates());
 		}
-		int id=0;
+		int id=1;
 		for(Coordinates cs:c) {
 			Station s=new Station(cs,nSlots,id,true);
 			getStations().put(id,s);
@@ -76,7 +76,7 @@ public class VelibSystem implements java.io.Serializable{
 		BicycleFactory bf=new BicycleFactory();
 		int nMech=(int)(nBikes*0.7);
 		int nElec=nBikes-nMech;
-		int id=0;
+		int id=1;
 		while(nMech>0) {
 			for(Integer key:getStations().keySet()) {
 				Station s=getStations().get(key);
