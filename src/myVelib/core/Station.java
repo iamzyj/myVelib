@@ -1,3 +1,7 @@
+/**
+ * The stations that are described in the project
+ * @author Shuai
+ */
 package myVelib.core;
 
 import java.text.DecimalFormat;
@@ -6,6 +10,9 @@ import java.util.*;
 
 public class Station implements java.io.Serializable{
 	static final long serialVersionUID = 2326497858930734556L;
+	/**
+	 * All the attributes are public for easier inspection
+	 */
 	public Coordinates Co;
 	public ArrayList<Slot> slots;
 	public int ID;
@@ -22,7 +29,14 @@ public class Station implements java.io.Serializable{
 	public double occupationRate;
 	
 	
-	
+	/**
+	 * Generate a station without a plus attribute
+	 * @param co the coordinate
+	 * @param slots_n the number of slots
+	 * @param iD the ID
+	 * @param online if it is online or not
+	 * @throws ParseException
+	 */
 	
 	public Station(Coordinates co, int slots_n, int iD, boolean online) throws ParseException {
 		super();
@@ -35,6 +49,15 @@ public class Station implements java.io.Serializable{
 		rentNum=0;
 		returnNum=0;
 	}
+	/**
+	 * Generate a plus station
+	 * @param co coordinate
+	 * @param slots_n the number of slots
+	 * @param iD the ID
+	 * @param online if it's online or not
+	 * @param isplus it is plus station
+	 * @throws ParseException
+	 */
 	public Station(Coordinates co, int slots_n, int iD, boolean online,boolean isplus) throws ParseException {
 		super();
 		Co = co;
@@ -46,7 +69,11 @@ public class Station implements java.io.Serializable{
 		rentNum=0;
 		returnNum=0;
 	}
-	
+	/**
+	 * Generate the slots in the stations
+	 * @return a arraylist of slots
+	 * @throws ParseException
+	 */
 	public ArrayList<Slot> GenerateSlot() throws ParseException {
 		ArrayList<Slot>  slots = new ArrayList<Slot>();
 		for (int i=1;i<=slot_num;i++) {
@@ -58,7 +85,10 @@ public class Station implements java.io.Serializable{
 		}
 		return slots;
 	}
-
+	/**
+	 * Count the number of free slots
+	 * @return number of free slots
+	 */
 	public int countFree() {
 		int cnt=0;
 		for(Slot s : slots) {
@@ -68,6 +98,11 @@ public class Station implements java.io.Serializable{
 		}
 		return cnt;
 }
+	/**
+	 * Distribute bikes in the slots
+	 * @param b the bikes
+	 * @throws ParseException
+	 */
 	public void setupBicycle(Bicycle b) throws ParseException {
 		int cnt=countFree();
 		if (cnt==0) {
@@ -85,6 +120,11 @@ public class Station implements java.io.Serializable{
 	
 	}
 	}
+	/**
+	 * add a bicycle in the slots
+	 * @param sess the ride session which contains the bike
+	 * @throws ParseException
+	 */
 	public void addBicycle(Session sess) throws ParseException {
 		int cnt=countFree();
 		if (cnt==0) {
@@ -102,6 +142,9 @@ public class Station implements java.io.Serializable{
 	
 	}
 	}
+	/**
+	 * clear all the bikes
+	 */
 	public void clear() {
 		for (Slot s : this.slots) {
 			
@@ -111,6 +154,10 @@ public class Station implements java.io.Serializable{
 	}
 		
 	}
+	/**
+	 * remove the bike from the slot
+	 * @return 
+	 */
 	public int removeBicycle() {
 		boolean hasbikes=hasBikes();
 		if (hasbikes==false) {
@@ -132,6 +179,10 @@ public class Station implements java.io.Serializable{
 	}
 	return -1;
 	}
+	/**
+	 * if the station has bikes
+	 * @return if the station has bikes
+	 */
 	public boolean hasBikes() {
 		int cnt=this.slot_num-countFree();
 		if(cnt==0) {
@@ -139,6 +190,11 @@ public class Station implements java.io.Serializable{
 		}
 		return true;
 	}
+	/**
+	 * Calculate the balance of a station
+	 * @return balance of the station
+	 * @throws ParseException
+	 */
 	public double calculateBalance() throws ParseException {
 		Date start=new Time(starttime).time;
 		Date end=new Time(endtime).time;
@@ -159,6 +215,9 @@ public class Station implements java.io.Serializable{
 		occupationRate=balance;
 		return balance;
 	}
+	/**
+	 * Rewrite the toString method
+	 */
 	@Override
 	public String toString() {
 		return "Station: ID "+ID;

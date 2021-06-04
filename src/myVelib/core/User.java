@@ -1,3 +1,7 @@
+/**
+ * User class of the Velib project
+ * @author Yingjie
+ */
 package myVelib.core;
 
 import java.util.*;
@@ -10,6 +14,9 @@ public class User implements java.io.Serializable{
 	private double credits=0.0;
 	private RegistrationCard card=null;
 	private ArrayList<Session> sessions;
+	/**
+	 * Constructor by indicating ID
+	 */
 	public User(int ID) {
 		this.ID=ID;
 		this.position=new Coordinates();
@@ -43,6 +50,10 @@ public class User implements java.io.Serializable{
 //		e.calculatePrice(this.card, this.credits);
 		this.sessions.add(e);
 	}
+	/**
+	 * Get the current session
+	 * @return current session
+	 */
 	public Session getCurrentSession() {
 		int len=this.sessions.size();
 		if(len>0) {			
@@ -59,6 +70,10 @@ public class User implements java.io.Serializable{
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	/**
+	 * See if the user has rent or not
+	 * @return
+	 */
 	public boolean hasRentedBefore() {
 		for(Session s:sessions) {
 			if(!s.isFinished()) {

@@ -1,10 +1,19 @@
+/**
+ * Sort policy by preferring uniformity
+ * @author Yingjie
+ */
 package myVelib.core;
 
 import java.util.HashMap;
 import java.util.TreeMap;
 
 public class PreserveUniformity implements RideSortStrategy{
-
+	/**
+	 * Sort the start stations by preserving uniformity
+	 * @param stations the all available stations
+	 * @param start the coordinate of user
+	 * @return the stations with distance increasing
+	 */
 	@Override
 	public TreeMap<Double, Station> SortStart(HashMap<Integer, Station> stations, Coordinates start) {
 		// TODO Auto-generated method stub
@@ -45,7 +54,12 @@ public class PreserveUniformity implements RideSortStrategy{
 		return sortedMap1;
 		
 	}
-
+	/**
+	 * Sort the end stations by preserving uniformity
+	 * @param stations the all available stations
+	 * @param end the coordinate of user's destination
+	 * @return the stations with distance increasing
+	 */
 	@Override
 	public TreeMap<Double, Station> SortEnd(HashMap<Integer, Station> stations, Coordinates end) {
 		// TODO Auto-generated method stub

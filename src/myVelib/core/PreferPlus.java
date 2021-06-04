@@ -1,10 +1,19 @@
+/**
+ * Sort the station with the preference of plus station
+ * @author Yingjie
+ */
 package myVelib.core;
 
 import java.util.HashMap;
 import java.util.TreeMap;
 
 public class PreferPlus implements RideSortStrategy{
-
+	/**
+	 * Sort the start stations by preferring plus stations
+	 * @param stations the all available stations
+	 * @param start the coordinate of user
+	 * @return the stations with distance increasing
+	 */
 	@Override
 	public TreeMap<Double, Station> SortStart(HashMap<Integer, Station> stations, Coordinates start) {
 		// TODO Auto-generated method stub
@@ -54,7 +63,12 @@ public class PreferPlus implements RideSortStrategy{
 		
 		return sortedMap;
 	}
-
+	/**
+	 * Sort the end stations by preferring plus stations
+	 * @param stations the all available stations
+	 * @param end the coordinate of user's destination
+	 * @return the stations with distance increasing
+	 */
 	@Override
 	public TreeMap<Double, Station> SortEnd(HashMap<Integer, Station> stations, Coordinates end) {
 		// TODO Auto-generated method stub

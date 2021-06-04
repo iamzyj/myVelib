@@ -1,10 +1,19 @@
+/**
+ * This is the default sort policy of ride planning which consider all avaliable stations
+ * @author Yingjie
+ */
 package myVelib.core;
 
 import java.util.HashMap;
 import java.util.TreeMap;
 
 public class DefaultSort implements RideSortStrategy{
-
+	/**
+	 * Sort the start stations
+	 * @param stations the all available stations
+	 * @param start the coordinate of user
+	 * @return the stations with distance increasing
+	 */
 	@Override
 	public TreeMap<Double, Station> SortStart(HashMap<Integer, Station> stations, Coordinates start) {
 		// TODO Auto-generated method stub
@@ -24,7 +33,12 @@ public class DefaultSort implements RideSortStrategy{
 		
 		return sortedMap;
 	}
-
+	/**
+	 * Sort the end stations
+	 * @param stations the all available stations
+	 * @param end the coordinate of user's destination
+	 * @return the stations with distance increasing
+	 */
 	@Override
 	public TreeMap<Double, Station> SortEnd(HashMap<Integer, Station> stations, Coordinates end) {
 		// TODO Auto-generated method stub
