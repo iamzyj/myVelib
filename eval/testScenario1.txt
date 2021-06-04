@@ -1,0 +1,8 @@
+setup Paris 10 10 70
+addUser ls null Paris
+rentbike Paris 1 1
+returnbike Paris 1 7 2021-5-31/12:00:00
+display Paris
+sortStation Paris MostUsed
+sortStation Paris LeastOccupied
+rideplan Paris default 1.0 2.0 3.0 3.5

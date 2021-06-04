@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="myVelib.core.BicycleFactory" x="260" y="569">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="myVelib.core.Coordinates" x="558" y="357">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="myVelib.core.LeastOccupied" x="484" y="999">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.SortPolicy"/>
+    </Class>
+    <Class name="myVelib.core.PreferPlus" x="981" y="633">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.RideSortStrategy"/>
+        <Communication destinationClassName="myVelib.core.Station"/>
+    </Class>
+    <Class name="myVelib.core.DefaultSort" x="1428" y="814">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.RideSortStrategy"/>
+        <Communication destinationClassName="myVelib.core.Station"/>
+    </Class>
+    <Class name="myVelib.core.PreserveUniformity" x="1930" y="622">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.RideSortStrategy"/>
+        <Communication destinationClassName="myVelib.core.Station"/>
+    </Class>
+    <Class name="myVelib.core.RegistrationCard" x="734" y="675">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="myVelib.core.Session" x="702" y="-67">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="myVelib.core.Station"
+            endpointName="endStation" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Bicycle"
+            endpointName="bicycle" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Time"
+            endpointName="endtime" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Station"
+            endpointName="startStation" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Time"
+            endpointName="starttime" kind="Simple"/>
+    </Class>
+    <Class name="myVelib.core.MostUsed" x="948" y="993">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.SortPolicy"/>
+    </Class>
+    <Class name="myVelib.core.SortPolicy" x="702" y="871">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="myVelib.core.RidePlanning" x="938" y="407">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="myVelib.core.Coordinates"
+            endpointName="start" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Coordinates"
+            endpointName="end" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Station"
+            endpointName="stations" kind="Simple"/>
+        <Association
+            destinationClassName="myVelib.core.RideSortStrategy"
+            endpointName="strategy" kind="Simple"/>
+        <Communication destinationClassName="myVelib.core.RideSortStrategy"/>
+    </Class>
+    <Class name="myVelib.core.Slot" x="106" y="403">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="myVelib.core.Bicycle"
+            endpointName="bicycle" kind="Simple"/>
+    </Class>
+    <Class name="myVelib.core.Electrical" x="88" y="687">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.Bicycle"/>
+    </Class>
+    <Class name="myVelib.core.User" x="1016" y="217">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="myVelib.core.Session"
+            endpointName="sessions" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Coordinates"
+            endpointName="position" kind="Simple"/>
+        <Association
+            destinationClassName="myVelib.core.RegistrationCard"
+            endpointName="card" kind="Simple"/>
+        <Communication destinationClassName="myVelib.core.Session"/>
+    </Class>
+    <Class name="myVelib.core.Vmax" x="536" y="685">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.RegistrationCard"/>
+    </Class>
+    <Class name="myVelib.core.RideSortStrategy" x="1469" y="375">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="myVelib.core.Station" x="124" y="-83">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="myVelib.core.Slot"
+            endpointName="slots" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Coordinates"
+            endpointName="Co" kind="Simple"/>
+        <Communication destinationClassName="myVelib.core.Session"/>
+        <Communication destinationClassName="myVelib.core.Bicycle"/>
+    </Class>
+    <Class name="myVelib.core.Vlibre" x="932" y="755">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.RegistrationCard"/>
+    </Class>
+    <Class name="myVelib.core.CardFactory" x="740" y="625">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="myVelib.core.AvoidPlus" x="2083" y="272">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.RideSortStrategy"/>
+        <Communication destinationClassName="myVelib.core.Station"/>
+    </Class>
+    <Class name="myVelib.core.VelibSystem" x="1342" y="-148">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="myVelib.core.Session"
+            endpointName="sessions" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Station"
+            endpointName="stations" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.Bicycle"
+            endpointName="bicycles" kind="Simple"/>
+        <Association destinationClassName="myVelib.core.User"
+            endpointName="users" kind="Simple"/>
+        <Communication destinationClassName="myVelib.core.BicycleFactory"/>
+        <Communication destinationClassName="myVelib.core.User"/>
+        <Communication destinationClassName="myVelib.core.Station"/>
+        <Communication destinationClassName="myVelib.core.RegistrationCard"/>
+        <Communication destinationClassName="myVelib.core.Session"/>
+        <Communication destinationClassName="myVelib.core.SortPolicy"/>
+        <Communication destinationClassName="myVelib.core.RidePlanning"/>
+    </Class>
+    <Class name="myVelib.core.Mechanical" x="213" y="715">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="myVelib.core.Bicycle"/>
+    </Class>
+    <Class name="myVelib.core.Bicycle" x="165" y="575">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="myVelib.core.Time" x="539" y="844">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+</ClassDiagram>

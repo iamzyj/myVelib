@@ -1,0 +1,4 @@
+setup L
+addUser ls Vlibre L
+rentbike L 1 1
+returnbike L 1 7 2021-5-27/12:00:00
